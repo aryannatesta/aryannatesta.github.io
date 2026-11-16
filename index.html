@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arianna Testa — geografa, cartografia e patrimonio geologico</title>
+<meta name="description" content="Arianna Testa, geografa e dottoressa di ricerca: cartografia e GIS, valorizzazione di geositi e geoturismo, geoeducazione, mappatura partecipativa. Roma e in tutta Italia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  /* Palette «Atlante Vintage» di EsploraGeo */
+  :root{
+    --blu:#183153;      /* blu atlante: testo, fasce scure */
+    --carta:#F6F0E5;    /* carta: fondo */
+    --salvia:#8AA27A;   /* salvia: dettagli, fasce chiare */
+    --terra:#8B5E3C;    /* terra: curve di livello */
+    --ocra:#C9A646;     /* ocra: evidenze su fondo scuro */
+    --ruggine:#B53617;  /* ruggine: inviti all'azione */
+    --linea:#DCD2BF;
+    --display:"Familjen Grotesk", system-ui, sans-serif;
+    --body:"Source Serif 4", Georgia, serif;
+    --w:70rem;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--carta);color:var(--blu);font-family:var(--body);font-size:1.125rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--ruggine);text-underline-offset:.18em}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--ruggine);outline-offset:3px;border-radius:2px}
+  h1,h2,h3{font-family:var(--display);line-height:1.08;letter-spacing:-.015em;margin:0}
+  p{margin:0 0 1em;max-width:36em}
+  .wrap{max-width:var(--w);margin:0 auto;padding:0 1.5rem}
+
+  header.top{position:sticky;top:0;z-index:5;background:var(--carta);border-bottom:1px solid var(--linea)}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:1rem;padding-bottom:1rem;gap:1rem}
+  .logo{font-family:var(--display);font-weight:700;font-size:1.35rem;color:var(--blu);text-decoration:none;letter-spacing:-.02em}
+  .logo span{color:var(--terra)}
+  nav ul{list-style:none;margin:0;padding:0;display:flex;gap:1.6rem;font-family:var(--display);font-weight:500;font-size:1rem}
+  nav a{color:var(--blu);text-decoration:none;padding:.3rem 0;border-bottom:2px solid transparent}
+  nav a[aria-current="page"]{border-bottom-color:var(--ruggine)}
+  .menu-btn{display:none;font-family:var(--display);font-weight:600;font-size:1rem;background:none;border:2px solid var(--blu);color:var(--blu);border-radius:3px;padding:.35rem .8rem;cursor:pointer}
+  .pagina[hidden]{display:none}
+  .pagina{min-height:calc(100vh - 9rem)}
+  .panoramica{padding:4rem 0 5rem}
+  .indice{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--blu)}
+  .indice a{display:grid;gap:.4rem;align-content:start;padding:1.4rem 1.4rem 1.4rem 0;text-decoration:none;color:var(--blu);height:100%}
+  .indice li+li a{padding-left:1.4rem;border-left:1px solid var(--linea)}
+  .indice strong{font-family:var(--display);font-size:1.4rem}
+  .indice span{font-size:1rem;color:var(--terra)}
+  .indice a:hover strong{color:var(--ruggine)}
+  nav a:hover{color:var(--ruggine)}
+
+  /* HERO: la carta a curve di livello */
+  .hero{position:relative;min-height:calc(88vh - 4rem);padding-top:3rem;display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid var(--linea)}
+  #topo{position:absolute;inset:0;width:100%;height:100%}
+  #topo path{fill:none;stroke:var(--terra);stroke-width:1;opacity:.45}
+  #topo path.master{stroke-width:1.8;opacity:.75}
+  #topo .quota{font-family:var(--display);font-size:11px;fill:var(--terra)}
+  .hero .wrap{position:relative;z-index:2;padding-bottom:4.5rem;width:100%}
+  .nome{font-family:var(--display);font-weight:600;font-size:1.15rem;margin:0 0 1rem;background:var(--carta);display:inline-block;padding:.1rem .4rem}
+  .hero h1{font-size:clamp(2.5rem,6.4vw,5.6rem);font-weight:700;background:var(--carta);box-decoration-break:clone;-webkit-box-decoration-break:clone;display:inline;padding:0 .12em;line-height:1.14}
+  .hero .lead{margin-top:1.6rem;font-size:1.25rem;max-width:32em;background:var(--carta);padding:.4rem .5rem .5rem;display:inline-block}
+  .azioni{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+  .cta{display:inline-block;font-family:var(--display);font-weight:600;font-size:1.05rem;background:var(--ruggine);color:#fff;text-decoration:none;padding:.85rem 1.4rem;border-radius:3px}
+  .cta:hover{background:#932b12}
+  .cta.sec{background:var(--carta);color:var(--blu);box-shadow:inset 0 0 0 2px var(--blu)}
+  .cta.sec:hover{background:var(--blu);color:var(--carta)}
+
+  section{padding:6rem 0}
+  .head{display:grid;grid-template-columns:1fr 2fr;gap:2rem;margin-bottom:3rem;align-items:start}
+  .head h2{font-size:clamp(2rem,4vw,3rem)}
+  .head p{font-size:1.2rem}
+
+  /* SERVIZI */
+  .servizi{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--blu)}
+  .servizi article{padding:2rem 1.75rem 2rem 0;border-bottom:1px solid var(--linea)}
+  .servizi article:not(:nth-child(3n+1)){padding-left:1.75rem;border-left:1px solid var(--linea)}
+  .servizi h3{font-size:1.4rem;margin-bottom:.6rem}
+  .servizi p{font-size:1rem}
+  .per{font-family:var(--display);font-size:.92rem;color:var(--terra);font-weight:500;margin:0}
+
+  /* PORTFOLIO */
+  .portfolio{background:var(--blu);color:var(--carta)}
+  .portfolio .head p{color:#c9d0da}
+  .tavole{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  .tavola{margin:0}
+  .tavola .img{aspect-ratio:4/3;background:#1f3c63;border:1px solid #33507a;position:relative;overflow:hidden}
+  .tavola .img svg{position:absolute;inset:0;width:100%;height:100%}
+  .tavola .img svg path{fill:none;stroke:var(--ocra);stroke-width:1;opacity:.5}
+  .tavola .segnaposto{position:absolute;left:1rem;bottom:.8rem;font-family:var(--display);font-size:.85rem;color:#c9d0da}
+  .tavola figcaption{padding-top:.9rem}
+  .tavola h3{font-size:1.2rem;color:var(--carta)}
+  .tavola p{font-size:.95rem;color:#c9d0da;margin:.3rem 0 0}
+
+  /* Collaborazioni */
+  .collab{padding:3.5rem 0 0}
+  .collab h2{font-size:1.3rem;margin-bottom:1.2rem;color:var(--terra)}
+  .enti{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--blu);border-bottom:1px solid var(--linea)}
+  .enti li{font-family:var(--display);font-weight:600;font-size:1.05rem;line-height:1.25;padding:1.2rem 1.2rem 1.2rem 0;display:grid;gap:.35rem;align-content:start}
+  .enti li+li{padding-left:1.2rem;border-left:1px solid var(--linea)}
+  .enti span{font-weight:500;font-size:.88rem;color:var(--terra)}
+  .partner{font-family:var(--display);font-weight:600;font-size:1.15rem;line-height:1.5;max-width:none}
+  .att-foto{width:100%;aspect-ratio:3/2;object-fit:cover;margin-bottom:1rem;display:block}
+  /* Sul campo */
+  .ritratto{width:100%;height:auto;display:block;aspect-ratio:4/5;object-fit:cover}
+  @media (max-width:900px){.ritratto{max-width:20rem}}
+  .galleria{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+  .galleria figure{margin:0}
+  .galleria a{display:block}
+  .galleria img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+  .galleria figcaption{padding-top:.6rem;font-size:.92rem;display:grid;gap:.1rem;color:var(--terra)}
+  .galleria figcaption strong{font-family:var(--display);font-size:1.02rem;color:var(--blu)}
+  @media (max-width:900px){.enti{grid-template-columns:1fr 1fr}.enti li,.enti li+li{padding:1rem 0;border-left:0;border-bottom:1px solid var(--linea)}.enti li:nth-child(even){padding-left:1rem;border-left:1px solid var(--linea)}.galleria{grid-template-columns:1fr 1fr}}
+  @media (max-width:600px){.enti{grid-template-columns:1fr}.enti li:nth-child(even){padding-left:0;border-left:0}}
+  /* EsploraGeo in evidenza nella home */
+  .promo-eg{background:#5E7650;color:var(--carta);padding:4.5rem 0;position:relative;overflow:hidden}
+  .promo-eg .wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:3rem;align-items:center;position:relative}
+  .promo-logo{font-family:var(--display);font-weight:700;font-size:clamp(3rem,8vw,6.5rem);letter-spacing:-.04em;line-height:.95;margin:0;color:var(--carta)}
+  .promo-logo span{color:#D5DFB4;display:block}
+  .promo-testo h2{font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:1rem}
+  .promo-testo p{color:#EEF1E4;font-size:1.15rem}
+  .promo-cta{background:var(--carta);color:#3F5235}
+  .promo-cta:hover{background:#fff}
+  .cta.sec.promo-sec{background:transparent;color:var(--carta);box-shadow:inset 0 0 0 2px var(--carta)}
+  .cta.sec.promo-sec:hover{background:var(--carta);color:#3F5235}
+  .promo-eg a:focus-visible{outline-color:var(--carta)}
+  @media (max-width:900px){.promo-eg .wrap{grid-template-columns:1fr;gap:1.5rem}.promo-logo span{display:inline}}
+  /* ESPLORAGEO: sezione con identità propria */
+  .eg{background:#E7EBDD;border-top:6px solid var(--salvia)}
+  .eg-intro{display:grid;grid-template-columns:1fr 2fr;gap:2rem;margin-bottom:3.5rem;align-items:start}
+  .eg-logo{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,5vw,3.8rem);letter-spacing:-.03em;margin:0;line-height:1}
+  .eg-logo span{color:#5E7650}
+  .eg-intro h2{font-size:1.6rem;margin-bottom:.8rem}
+  .eg-sub{font-size:1.5rem;margin:3.5rem 0 1.2rem}
+  .eg-sub:first-of-type{margin-top:0}
+  .eg .luogo{color:#5E7650}
+  /* SCUOLE */
+  .formati{width:100%;border-collapse:collapse;font-size:1.05rem}
+  .formati th,.formati td{text-align:left;padding:1.1rem 1rem 1.1rem 0;border-bottom:1px solid var(--linea);vertical-align:top}
+  .formati th{font-family:var(--display);font-weight:600;font-size:.95rem;color:#5E7650;border-bottom:2px solid var(--blu)}
+  .formati td:first-child{font-family:var(--display);font-weight:600;font-size:1.2rem;white-space:nowrap}
+  .tappe-riga{margin-top:2rem;font-size:1.05rem}
+  .tappe-riga strong{font-family:var(--display)}
+
+  /* PROGETTI */
+  .progetti-band{background:#ECE6D3}
+  .progetti{display:grid;grid-template-columns:repeat(2,1fr);gap:2.5rem 3rem}
+  .progetti article{border-top:2px solid var(--blu);padding-top:1.2rem}
+  .luogo{font-family:var(--display);font-size:.95rem;color:var(--terra);font-weight:600;margin-bottom:.4rem}
+  .progetti h3{font-size:1.45rem;margin-bottom:.7rem}
+  .progetti p{font-size:1rem}
+
+  /* PROFILO */
+  .profilo .grid{display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start}
+  .foto{aspect-ratio:4/5;border:1px dashed var(--salvia);display:grid;place-items:center;color:var(--salvia);font-family:var(--display);font-size:.95rem;text-align:center;padding:1rem}
+  .profilo h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:1.4rem}
+  dl.cv{display:grid;grid-template-columns:9rem 1fr;gap:.9rem 1.5rem;margin:2rem 0 0;font-size:1rem;border-top:1px solid var(--linea);padding-top:1.5rem}
+  dl.cv dt{font-family:var(--display);font-weight:600;color:var(--terra)}
+  dl.cv dd{margin:0}
+
+  .cv-link{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem;font-family:var(--display);font-weight:600}
+  /* PUBBLICAZIONI */
+  .pubb{border-top:1px solid var(--linea)}
+  .pubblicazioni{list-style:none;margin:0;padding:0;border-top:2px solid var(--blu)}
+  .pubblicazioni li{display:grid;grid-template-columns:5rem 1fr;gap:1rem;padding:1.1rem 0;border-bottom:1px solid var(--linea);font-size:1rem;max-width:58rem}
+  .anno{font-family:var(--display);font-weight:600;color:var(--terra)}
+  /* CONTATTI */
+  .contatti{background:var(--blu);color:var(--carta)}
+  .contatti .grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end}
+  .contatti h2{font-size:clamp(2.4rem,5.5vw,4.2rem)}
+  .contatti p{color:#c9d0da;margin-top:1rem}
+  .canali{list-style:none;padding:0;margin:0;font-family:var(--display);font-size:1.3rem}
+  .canali li{padding:1rem 0;border-bottom:1px solid #33507a;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+  .canali a{color:var(--ocra)}
+  .canali span{color:#c9d0da;font-size:1rem;font-weight:500}
+
+  .contatti .canali{margin-top:2.5rem;font-size:1.15rem}
+  .modulo{display:grid;gap:1.1rem;background:#1f3c63;padding:2rem;border-radius:3px}
+  .modulo label{display:grid;gap:.35rem;font-family:var(--display);font-weight:500;font-size:.98rem;color:var(--carta)}
+  .modulo .facolt{color:#a9b4c3;font-weight:400}
+  .modulo input[type=text],.modulo input[type=email],.modulo select,.modulo textarea{font:inherit;font-family:var(--body);font-size:1rem;color:var(--blu);background:var(--carta);border:2px solid transparent;border-radius:3px;padding:.65rem .75rem;width:100%}
+  .modulo input:focus,.modulo select:focus,.modulo textarea:focus{outline:none;border-color:var(--ocra)}
+  .modulo .due{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .modulo .consenso{display:flex;gap:.6rem;align-items:flex-start;font-family:var(--body);font-weight:400;font-size:.92rem;color:#c9d0da}
+  .modulo .consenso input{margin-top:.3rem;accent-color:var(--ocra)}
+  .modulo button{border:0;cursor:pointer;justify-self:start}
+  .nascosto{position:absolute;left:-9999px}
+  .esito{margin:0;font-size:.95rem;color:var(--ocra)}
+  .esito:empty{display:none}
+  .grazie{background:#1f3c63;padding:2rem;border-left:4px solid var(--ocra)}
+  .grazie h3{font-size:1.5rem;margin-bottom:.6rem}
+  .grazie p{color:var(--carta)}
+  .foto-carta{display:block}
+  .foto-carta img{width:100%;height:100%;object-fit:cover;display:block}
+  @media (max-width:600px){.modulo .due{grid-template-columns:1fr}.modulo{padding:1.4rem}}
+  footer{padding:2rem 0;font-family:var(--display);font-size:.9rem;color:var(--terra)}
+
+  @media (max-width:900px){
+    nav ul{gap:1rem;font-size:.92rem}
+    .head,.eg-intro,.profilo .grid,.contatti .grid{grid-template-columns:1fr}
+    .servizi,.tavole,.progetti{grid-template-columns:1fr}
+    .servizi article,.servizi article:not(:nth-child(3n+1)){padding:1.6rem 0;border-left:0}
+    .foto{max-width:16rem}
+  }
+  @media (max-width:900px){
+    .indice{grid-template-columns:1fr 1fr}
+    .indice li:nth-child(3) a{padding-left:0;border-left:0}
+    .indice li:nth-child(n+3){border-top:1px solid var(--linea)}
+  }
+  @media (max-width:600px){
+    .menu-btn{display:block}
+    nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--carta);border-bottom:1px solid var(--linea)}
+    nav.aperto{display:block}
+    nav ul{flex-direction:column;gap:0;padding:.5rem 1.5rem 1rem;font-size:1.1rem}
+    nav li a{display:block;padding:.7rem 0}
+    .indice{grid-template-columns:1fr}
+    .indice li a,.indice li+li a{padding:1.2rem 0;border-left:0}
+    .indice li+li{border-top:1px solid var(--linea)}
+    .formati td:first-child{white-space:normal}
+    dl.cv{grid-template-columns:1fr;gap:.2rem}
+    dl.cv dd{margin-bottom:.8rem}
+    section{padding:4rem 0}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inizio">Arianna <span>Testa</span></a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+    <nav aria-label="Pagine" id="menu">
+      <ul>
+        <li><a href="#servizi">Servizi</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#campo">Sul campo</a></li>
+        <li><a href="#esplorageo">EsploraGeo</a></li>
+        <li><a href="#profilo">Profilo</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="inizio">
+  <div class="pagina" data-pagina="inizio">
+  <div class="hero">
+    <svg id="topo" aria-hidden="true"></svg>
+    <div class="wrap">
+      <p class="nome">Geografa · PhD in Scienze del Patrimonio Culturale</p><br>
+      <h1>Carte, geositi e percorsi per leggere un territorio</h1><br>
+      <p class="lead">Aiuto enti, parchi, comuni e gruppi di ricerca a conoscere e valorizzare il proprio paesaggio: con la cartografia, la valutazione del patrimonio geologico, l'analisi territoriale e il lavoro sul campo.</p>
+      <div class="azioni">
+        <a class="cta" href="#contatti">Parliamo del tuo progetto</a>
+        <a class="cta sec" href="#portfolio">Guarda le carte</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="promo-eg" aria-labelledby="promo-t">
+    <div class="wrap">
+      <p class="promo-logo" aria-hidden="true">Esplora<span>Geo</span></p>
+      <div class="promo-testo">
+        <h2 id="promo-t">Porta la geografia fuori dall'aula</h2>
+        <p>Laboratori, uscite sul campo e mappe costruite insieme per scuole, PCTO, università popolari e associazioni. Percorsi da 8 a 24 ore, costruiti con i docenti attorno al territorio della classe.</p>
+        <div class="azioni">
+          <a class="cta promo-cta" href="#esplorageo">Scopri i percorsi EsploraGeo</a>
+          <a class="cta sec promo-sec" href="https://www.instagram.com/esplorageo/">Seguilo su Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="collab" aria-labelledby="collab-t">
+    <div class="wrap">
+      <h2 id="collab-t">Ho fatto ricerca con</h2>
+      <ul class="enti">
+        <li>Università di Roma Tor Vergata<span>Dottorato e didattica</span></li>
+        <li>Université Toulouse – Jean Jaurès<span>Laboratorio GEODE</span></li>
+        <li>ENSA Toulouse<span>Laboratoire de Recherche en Architecture</span></li>
+        <li>Universidad de Castilla-La Mancha<span>Gruppo GEOVOL, Ciudad Real</span></li>
+        <li>Universidad de La Laguna<span>GeoTurVol, Tenerife</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="panoramica" aria-label="Cosa trovi nel sito">
+    <div class="wrap">
+      <ul class="indice">
+        <li><a href="#servizi"><strong>Servizi</strong><span>Cartografia, geositi, analisi territoriali, ricerca e progettazione</span></a></li>
+        <li><a href="#portfolio"><strong>Portfolio</strong><span>Una selezione di carte tra Italia e Spagna</span></a></li>
+        <li><a href="#campo"><strong>Sul campo</strong><span>Foto da sopralluoghi ed escursioni di ricerca</span></a></li>
+        <li><a href="#esplorageo"><strong>EsploraGeo</strong><span>Il mio progetto di divulgazione per scuole e pubblico</span></a></li>
+        <li><a href="#profilo"><strong>Profilo</strong><span>Formazione, ricerca, pubblicazioni e CV</span></a></li>
+      </ul>
+    </div>
+  </section>
+  </div>
+
+  <section id="servizi" class="pagina" data-pagina="servizi">
+    <div class="wrap">
+      <div class="head">
+        <h2>Servizi</h2>
+        <p>Lavoro su incarico, in collaborazione o come parte di un gruppo di progetto. Per incarichi di ricerca e consulenza lavoro in italiano e in inglese, e posso seguire progetti in francese e spagnolo.</p>
+      </div>
+      <div class="servizi">
+        <article>
+          <h3>Cartografia e GIS</h3>
+          <p>Carte tematiche e analitiche in QGIS, modelli del terreno da DEM con ombreggiature e resa 3D, post-produzione in Illustrator, StoryMaps e mappe web per pubblicazioni, pannelli e progetti.</p>
+          <p class="per">Per enti, editori, gruppi di ricerca</p>
+        </article>
+        <article>
+          <h3>Geositi e geoturismo</h3>
+          <p>Inventario e valutazione dei geositi, itinerari geoturistici, supporto ai percorsi di candidatura a UNESCO Global Geopark.</p>
+          <p class="per">Per parchi, aree protette, comuni</p>
+        </article>
+        <article>
+          <h3>Analisi territoriali</h3>
+          <p>Lettura dei sistemi territoriali, analisi degli attori e delle reti (SNA), SWOT e valutazioni comparative a supporto di piani e bandi.</p>
+          <p class="per">Per enti locali, GAL, consulenti</p>
+        </article>
+        <article>
+          <h3>Ricerca e progettazione</h3>
+          <p>Collaborazione a progetti di ricerca e a candidature su bandi nazionali ed europei, rassegne della letteratura, disegno della valutazione.</p>
+          <p class="per">Per università, centri di ricerca, partenariati</p>
+        </article>
+        <article>
+          <h3>Mappatura partecipativa</h3>
+          <p>Mappature collettive e citizen science, anche digitali con FirstLife, per coinvolgere abitanti e portatori di interesse.</p>
+          <p class="per">Per enti locali, ecomusei, reti territoriali</p>
+        </article>
+        <article>
+          <h3>Formazione e divulgazione</h3>
+          <p>Lezioni, corsi e attività per scuole e pubblico, in italiano, con il mio progetto <a href="#esplorageo">EsploraGeo</a>.</p>
+          <p class="per">Per scuole, università popolari, associazioni</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="pagina" data-pagina="portfolio">
+  <section id="portfolio" class="portfolio">
+    <div class="wrap">
+      <div class="head">
+        <h2>Portfolio cartografico</h2>
+        <p>Una selezione di carte realizzate per la ricerca sul patrimonio geologico, tra Italia e Spagna. Clicca su una carta per vederla a grande formato.</p>
+      </div>
+      <div class="tavole">
+        <figure class="tavola"><a class="img foto-carta" href="carte/gargano-geositi-geoitinerari.jpg"><img src="carte/gargano-geositi-geoitinerari-anteprima.jpg" alt="Carta del Promontorio del Gargano su rilievo ombreggiato con i geositi classificati per potenziale di inserimento in geoitinerari" loading="lazy"></a>
+          <figcaption><h3>Geositi del Gargano e geoitinerari</h3><p>Classificazione dei geositi secondo il loro potenziale per i geoitinerari · QGIS · tesi di dottorato</p></figcaption></figure>
+        <figure class="tavola"><a class="img foto-carta" href="carte/calatrava-geositi.jpg"><img src="carte/calatrava-geositi-anteprima.jpg" alt="Carta dei geositi del geoparco Volcanes de Calatrava su carta geomorfologica a colori" loading="lazy"></a>
+          <figcaption><h3>Geositi di Volcanes de Calatrava</h3><p>Geositi analizzati sul campo su base geomorfologica · UNESCO Global Geopark, Spagna</p></figcaption></figure>
+        <figure class="tavola"><a class="img foto-carta" href="carte/gargano-carta-fisica.jpg"><img src="carte/gargano-carta-fisica-anteprima.jpg" alt="Carta fisica del Promontorio del Gargano con ombreggiatura del rilievo, laghi di Lesina e Varano" loading="lazy"></a>
+          <figcaption><h3>Carta fisica del Gargano</h3><p>Rilievo ombreggiato e curve di livello dal DEM · QGIS</p></figcaption></figure>
+        <figure class="tavola"><a class="img foto-carta" href="carte/gargano-proposta-geoitinerario.jpg"><img src="carte/gargano-proposta-geoitinerario-anteprima.jpg" alt="Carta della proposta di geoitinerario sul Gargano con geositi e itinerari culturali" loading="lazy"></a>
+          <figcaption><h3>Proposta di geoitinerario per il Gargano</h3><p>Geositi, tratturi e itinerari culturali in una rete per il geoturismo</p></figcaption></figure>
+        <figure class="tavola"><a class="img foto-carta" href="carte/carta-geologica-colli-albani.jpg"><img src="carte/carta-geologica-colli-albani-anteprima.jpg" alt="Carta geologica dei Colli Albani con i laghi di Albano e Nemi, litologie a colori su rilievo ombreggiato" loading="lazy"></a>
+          <figcaption><h3>Carta geologica dei Colli Albani</h3><p>Litologie su rilievo ombreggiato · QGIS</p></figcaption></figure>
+        <figure class="tavola"><a class="img foto-carta" href="carte/calatrava-vias-pecuarias.jpg"><img src="carte/calatrava-vias-pecuarias-anteprima.jpg" alt="Carta delle vie della transumanza nel geoparco Volcanes de Calatrava su modello digitale del terreno" loading="lazy"></a>
+          <figcaption><h3>Vías Pecuarias di Calatrava</h3><p>Rete storica della transumanza su modello del terreno · Ciudad Real, Spagna</p></figcaption></figure>
+        <figure class="tavola"><a class="img foto-carta" href="carte/regi-tratturi.jpg"><img src="carte/regi-tratturi-anteprima.jpg" alt="Carta dei Regi Tratturi tra Abruzzo, Molise e Puglia" loading="lazy"></a>
+          <figcaption><h3>Regi Tratturi Magni</h3><p>I tratturi della transumanza dall'Abruzzo alla Puglia</p></figcaption></figure>
+        <figure class="tavola"><a class="img foto-carta" href="carte/lanzarote-hillshade.jpg"><img src="carte/lanzarote-hillshade-anteprima.jpg" alt="Carta in rilievo ombreggiato dell'isola di Lanzarote con i coni vulcanici" loading="lazy"></a>
+          <figcaption><h3>Lanzarote</h3><p>Modello del terreno ombreggiato con i coni vulcanici · Canarie</p></figcaption></figure>
+        <figure class="tavola"><a class="img foto-carta" href="carte/gargano-cave-apricena.jpg"><img src="carte/gargano-cave-apricena-anteprima.jpg" alt="Carta di inquadramento del geosito delle Cave di Apricena sul Gargano" loading="lazy"></a>
+          <figcaption><h3>Scheda di sito: Cave di Apricena</h3><p>Carta di inquadramento di un geosito con riquadro di localizzazione</p></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <section id="campo" class="campo pagina" data-pagina="campo" aria-labelledby="campo-t">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="campo-t">Sul campo</h2>
+        <p>Sopralluoghi, corsi ed escursioni di ricerca tra il Gargano, Castilla-La Mancha e le Isole Canarie.</p>
+      </div>
+      <div class="galleria">
+        <figure><a href="foto/taccuino-teide.jpg"><img src="foto/taccuino-teide-anteprima.jpg" alt="Arianna prende appunti sul taccuino davanti al Teide" loading="lazy"></a><figcaption><strong>Appunti sul campo</strong>Parque Nacional del Teide, Tenerife</figcaption></figure>
+        <figure><a href="foto/rilievo-fotografico-tenerife.jpg"><img src="foto/rilievo-fotografico-tenerife-anteprima.jpg" alt="Rilievo fotografico, Corso di geomorfologia vulcanica UCLM · Tenerife, 2025" loading="lazy"></a><figcaption><strong>Rilievo fotografico</strong>Corso di geomorfologia vulcanica UCLM · Tenerife, 2025</figcaption></figure>
+        <figure><a href="foto/escursione-uclm-tenerife.jpg"><img src="foto/escursione-uclm-tenerife-anteprima.jpg" alt="Escursione con il gruppo di ricerca, Corso di geomorfologia vulcanica UCLM · Tenerife, 2025" loading="lazy"></a><figcaption><strong>Escursione con il gruppo di ricerca</strong>Corso di geomorfologia vulcanica UCLM · Tenerife, 2025</figcaption></figure>
+        <figure><a href="foto/colate-costa-canarie.jpg"><img src="foto/colate-costa-canarie-anteprima.jpg" alt="Colate laviche sulla costa, Isole Canarie" loading="lazy"></a><figcaption><strong>Colate laviche sulla costa</strong>Isole Canarie</figcaption></figure>
+        <figure><a href="foto/parete-lavica-canarie.jpg"><img src="foto/parete-lavica-canarie-anteprima.jpg" alt="Lettura di un affioramento, Isole Canarie" loading="lazy"></a><figcaption><strong>Lettura di un affioramento</strong>Isole Canarie</figcaption></figure>
+        <figure><a href="foto/architello-san-felice.jpg"><img src="foto/architello-san-felice-anteprima.jpg" alt="Architello di San Felice, Vieste, Gargano · 2024" loading="lazy"></a><figcaption><strong>Architello di San Felice</strong>Vieste, Gargano · 2024</figcaption></figure>
+        <figure><a href="foto/falesia-vulcanica-canarie.jpg"><img src="foto/falesia-vulcanica-canarie-anteprima.jpg" alt="Falesia vulcanica, Isole Canarie" loading="lazy"></a><figcaption><strong>Falesia vulcanica</strong>Isole Canarie</figcaption></figure>
+        <figure><a href="foto/lava-pahoehoe.jpg"><img src="foto/lava-pahoehoe-anteprima.jpg" alt="Lava pahoehoe, Isole Canarie" loading="lazy"></a><figcaption><strong>Lava pahoehoe</strong>Isole Canarie</figcaption></figure>
+        <figure><a href="foto/cava-apricena.jpg"><img src="foto/cava-apricena-anteprima.jpg" alt="Cave di Apricena, Gargano · 2024" loading="lazy"></a><figcaption><strong>Cave di Apricena</strong>Gargano · 2024</figcaption></figure>
+        <figure><a href="foto/lapilli.jpg"><img src="foto/lapilli-anteprima.jpg" alt="Lapilli raccolti sul campo, Isole Canarie" loading="lazy"></a><figcaption><strong>Lapilli raccolti sul campo</strong>Isole Canarie</figcaption></figure>
+        <figure><a href="foto/maar-de-la-posadilla.jpg"><img src="foto/maar-de-la-posadilla-anteprima.jpg" alt="Maar de la Posadilla, Volcanes de Calatrava, Spagna · 2024" loading="lazy"></a><figcaption><strong>Maar de la Posadilla</strong>Volcanes de Calatrava, Spagna · 2024</figcaption></figure>
+        <figure><a href="foto/realta-virtuale-lanzarote.jpg"><img src="foto/realta-virtuale-lanzarote-anteprima.jpg" alt="Divulgazione immersiva, Il tubo vulcanico in realtà virtuale · Lanzarote" loading="lazy"></a><figcaption><strong>Divulgazione immersiva</strong>Il tubo vulcanico in realtà virtuale · Lanzarote</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="esplorageo" class="eg pagina" data-pagina="esplorageo">
+    <div class="wrap">
+      <div class="eg-intro">
+        <p class="eg-logo">Esplora<span>Geo</span></p>
+        <div>
+          <h2>Il mio progetto di divulgazione</h2>
+          <p>Con EsploraGeo porto la geografia fuori dall'aula: laboratori, uscite sul campo e mappe costruite insieme, per scuole, adulti e comunità. Tutte le attività si svolgono in italiano.</p>
+          <p><a href="https://www.instagram.com/esplorageo/">Segui EsploraGeo su Instagram</a></p>
+        </div>
+      </div>
+
+      <h3 class="eg-sub">Percorsi per le scuole</h3>
+      <table class="formati">
+        <thead><tr><th scope="col">Durata</th><th scope="col">Per chi</th><th scope="col">Cosa include</th></tr></thead>
+        <tbody>
+          <tr><td>8 ore</td><td>Primaria (IV e V), secondaria di primo grado</td><td>Laboratorio di lettura del paesaggio e una breve uscita</td></tr>
+          <tr><td>18 ore</td><td>Secondaria di primo grado</td><td>Percorso completo con uscita sul campo e restituzione finale</td></tr>
+          <tr><td>24 ore</td><td>Primaria e secondaria di primo grado</td><td>Percorso esteso con più uscite e un prodotto finale della classe</td></tr>
+          <tr><td>20+ ore</td><td>Secondaria di secondo grado, classi III–V (PCTO)</td><td>Paesaggio, mappatura digitale, lavoro sul campo, restituzione pubblica</td></tr>
+        </tbody>
+      </table>
+      <p class="tappe-riga">Ogni percorso passa per quattro momenti: <strong>guardare</strong> il paesaggio in classe, <strong>uscire</strong> sul posto, <strong>rielaborare</strong> in mappe e racconti, <strong>restituire</strong> il lavoro a famiglie e quartiere. Costi e calendario su richiesta.</p>
+
+      <h3 class="eg-sub">Corsi ed eventi</h3>
+      <p class="tappe-riga" style="margin-top:0">Corsi di geografia per adulti nelle università popolari, con cartografie, laboratori ed escursioni; serate ed eventi aperti al pubblico sul patrimonio geologico, come la GeoNight e il Geodiversity Day.</p>
+
+      <h3 class="eg-sub">Con chi ho lavorato</h3>
+      <p class="partner">Liceo Amaldi di Roma · IC Tivoli IV «Vincenzo Pacifici» · Un Mondo nel Cuore APS · Università popolare LUIG, Villa Adriana</p>
+
+      <h3 class="eg-sub">Attività recenti</h3>
+      <div class="progetti">
+        <article>
+          <p class="luogo">Gabii, Roma</p>
+          <!-- foto attività: <img class="att-foto" src="foto/geonight-2026.jpg" alt="..."> -->
+          <h3>GeoNight 2026 al Cratere di Castiglione</h3>
+          <p>Co-organizzazione e coordinamento scientifico: patrimonio geologico, mappatura partecipativa, paesaggio sonoro e biodiversità attorno all'antico cratere.</p>
+        </article>
+        <article>
+          <p class="luogo">Tivoli</p>
+          <h3>Geo-Epica in Valle dell'Aniene</h3>
+          <p>Con Valeria Roggi, un percorso per le prime medie dell'IC Tivoli IV che intreccia l'epica con la lettura del paesaggio tiburtino.</p>
+        </article>
+        <article>
+          <p class="luogo">Liceo Amaldi, Roma</p>
+          <h3>PCTO di geoeducazione</h3>
+          <p>Laboratori su paesaggio e mappatura partecipativa, uscita sul campo e restituzione curata dagli studenti.</p>
+        </article>
+        <article>
+          <p class="luogo">Villa Adriana, Tivoli</p>
+          <h3>Corso di geografia per adulti</h3>
+          <p>Ventiquattro ore all'università popolare LUIG tra cartografie, lettura dei sistemi territoriali ed escursioni.</p>
+        </article>
+        <article>
+          <p class="luogo">Gabii, Roma</p>
+          <h3>Il paesaggio vulcanico di Gabii</h3>
+          <p>Lezione e attività interattive per la Notte Bianca delle Scuole Aperte 2026, con Un Mondo nel Cuore APS.</p>
+        </article>
+        <article>
+          <p class="luogo">VI Municipio, Roma</p>
+          <h3>GeoNight 2024: come suonano le borgate</h3>
+          <p>Esplorazione urbana con studenti delle medie tra registrazioni sonore, mappe partecipative e lettura del quartiere.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="pagina" data-pagina="profilo">
+  <section id="profilo" class="profilo">
+    <div class="wrap grid">
+      <img class="ritratto" src="foto/arianna-teide.jpg" alt="Arianna Testa con la macchina fotografica davanti al Teide, Tenerife" width="900" height="1125">
+      <div>
+        <h2>Profilo</h2>
+        <p>Sono geografa e dottoressa di ricerca in Scienze del Patrimonio Culturale. Mi occupo di paesaggio, patrimonio geologico, geoturismo e geoeducazione, con un'attenzione particolare alle aree protette e ai territori fuori dalle grandi città.</p>
+        <p>Nella ricerca di dottorato ho costruito un modello di valorizzazione dei geositi del Parco Nazionale del Gargano in vista della candidatura a UNESCO Global Geopark.</p>
+        <p>Unisco il lavoro sul campo, gli strumenti GIS e i metodi partecipativi: per me una buona carta è quella che aiuta qualcuno a prendere una decisione o a guardare meglio un luogo.</p>
+        <dl class="cv">
+          <dt>Formazione</dt><dd>Dottorato in Scienze del Patrimonio Culturale, Università di Roma Tor Vergata, 2026, giudizio Eccellente. Tesi sul Gargano come Geoparco Mondiale UNESCO. Laurea magistrale in Progettazione e gestione dei sistemi turistici (110 e lode).</dd>
+          <dt>Ricerca all'estero</dt><dd>Université Toulouse – Jean Jaurès (GEODE; LRA, ENSA Toulouse), Universidad de La Laguna (GeoTurVol), Universidad de Castilla-La Mancha (GEOVOL)</dd>
+          <dt>Didattica</dt><dd>Cultrice della materia a Tor Vergata (2022–2026): Geografia, Geografia per la pianificazione del turismo, Geopolitica del turismo, GIS per il marketing territoriale</dd>
+          <dt>Associazioni</dt><dd>AGeI (gruppi Landscape Studies, Geopolitica, Isole e stati insulari, Territori e turismi), Società Geografica Italiana, AIGF – Commissione Geografia e Patrimonio</dd>
+          <dt>Revisioni</dt><dd>Peer reviewer per <em>Geoheritage</em> (Springer Nature) e <em>I Castelli di Yale Online</em></dd>
+          <dt>Strumenti</dt><dd>QGIS avanzato, DEM e resa 3D del terreno, Illustrator, Lightroom, FirstLife, GeoJSON, Overpass Turbo, Excel avanzato, SQL</dd>
+          <dt>Lingue</dt><dd>Italiano, inglese (C1), francese e spagnolo (B1)</dd>
+        </dl>
+        <p class="cv-link"><a href="cv/Arianna_Testa_CV_ITA.pdf">CV in italiano (PDF)</a><a href="cv/Arianna_Testa_CV_ENG.pdf">CV in English (PDF)</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pubblicazioni" class="pubb">
+    <div class="wrap">
+      <div class="head">
+        <h2>Pubblicazioni scelte</h2>
+        <p>L'elenco completo è su <a href="https://orcid.org/0009-0006-8784-0599">ORCID</a> e <a href="https://www.researchgate.net/profile/Arianna-Testa-4">ResearchGate</a>.</p>
+      </div>
+      <ul class="pubblicazioni">
+        <li><span class="anno">2026</span><span>Testa, A., Becerra-Ramírez, R., Cornejo Nieto, C., Dóniz-Páez, J., Morsilli, M. <em>Accessibility, protection, landscape and dissemination for the enhancement of geoheritage: comparative models and operational proposals for the Gargano Promontory.</em> Memorie Geografiche, NS 29.</span></li>
+        <li><span class="anno">2026</span><span>Rastelli, V., Pompili, R., Brustia, E., Primerano, P., Testa, A. <em>Geositi: custodi del patrimonio geologico e strumenti per un turismo sostenibile.</em> Memorie Geografiche, NS 29.</span></li>
+        <li><span class="anno">2025</span><span>Testa, A., Dóniz Páez, J., Cornejo-Nieto, C., Becerra-Ramírez, R. <em>Volcanic geoheritage in small oceanic islands: El Hierro UNESCO Global Geopark as a tool for geotourism promotion.</em> Oxford Geoheritage Virtual Conference.</span></li>
+        <li><span class="anno">2025</span><span>Brambilla, A., Pennacchio, P., Rodelli, R., Testa, A. <em>Dottorandus.</em> In M. Picone (a cura di), Spazi giocati: per una geografia ludica. Guerini e Associati.</span></li>
+        <li><span class="anno">2024</span><span>Testa, A. <em>Gargano Slow &amp; Green. Tra sentieri della transumanza, cammini e ciclovie.</em> In Intrecci di saperi per una conoscenza integrata. Andrea Pacilli Editore.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  </div>
+
+  <section id="contatti" class="contatti pagina" data-pagina="contatti">
+    <div class="wrap grid">
+      <div>
+        <h2>Hai un progetto sul territorio?</h2>
+        <p>Raccontami il progetto, il luogo e i tempi: ti rispondo con una proposta.</p>
+        <ul class="canali">
+          <li><a href="mailto:ariannates.esplorageo@gmail.com">ariannates.esplorageo@gmail.com</a><span>Email</span></li>
+          <li><a href="https://www.linkedin.com/in/arianna-testa/">LinkedIn</a><span>Profilo professionale</span></li>
+          <li><a href="https://www.researchgate.net/profile/Arianna-Testa-4">ResearchGate</a><span>Pubblicazioni</span></li>
+          <li><a href="https://orcid.org/0009-0006-8784-0599">ORCID</a><span>0009-0006-8784-0599</span></li>
+          <li><a href="https://www.instagram.com/esplorageo/">@esplorageo</a><span>Instagram di EsploraGeo</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <div id="grazie" class="grazie" hidden>
+          <h3>Messaggio inviato</h3>
+          <p>Grazie, ho ricevuto la tua richiesta. Ti rispondo entro pochi giorni.</p>
+        </div>
+        <form id="modulo" class="modulo" action="https://formsubmit.co/ariannates.esplorageo@gmail.com" method="POST">
+          <!-- impostazioni FormSubmit -->
+          <input type="hidden" name="_subject" value="Nuova richiesta dal sito">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://aryannatesta.github.io/#grazie">
+          <input type="text" name="_honey" class="nascosto" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="due">
+            <label>Nome e cognome<input type="text" name="nome" required autocomplete="name"></label>
+            <label>Email<input type="email" name="email" required autocomplete="email"></label>
+          </div>
+          <label><span>Ente, scuola o organizzazione <span class="facolt">(facoltativo)</span></span><input type="text" name="ente" autocomplete="organization"></label>
+          <label>Di cosa hai bisogno
+            <select name="servizio" required>
+              <option value="">Scegli un'opzione</option>
+              <option>Cartografia e GIS</option>
+              <option>Geositi e geoturismo</option>
+              <option>Analisi territoriali</option>
+              <option>Ricerca e progettazione</option>
+              <option>Mappatura partecipativa</option>
+              <option>EsploraGeo: percorso per una scuola</option>
+              <option>EsploraGeo: corso o evento</option>
+              <option>Altro</option>
+            </select>
+          </label>
+          <label>Messaggio<textarea name="messaggio" rows="6" required placeholder="Il progetto, il luogo, i tempi e, se c'è, il budget indicativo"></textarea></label>
+          <label class="consenso"><input type="checkbox" name="consenso_privacy" value="sì" required> Acconsento al trattamento dei miei dati al solo scopo di rispondere a questa richiesta.</label>
+          <button type="submit" class="cta">Invia la richiesta</button>
+          <p class="esito" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Arianna Testa · geografa · Roma</div>
+</footer>
+
+<script>
+(function(){
+  const NS='http://www.w3.org/2000/svg';
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function rings(svg,W,H,peaks,animate,label){
+    let n=0;
+    peaks.forEach((p,pi)=>{
+      for(let i=p.levels;i>=1;i--){
+        const base=p.r*(i/p.levels)*1.35;let d='';
+        for(let s=0;s<=120;s++){
+          const a=s/120*Math.PI*2;
+          const wob=Math.sin(a*3+p.ph+i*.35)*.09+Math.sin(a*5-i*.5+p.ph)*.05+Math.cos(a*2+pi)*.07;
+          const r=base*(1+wob);
+          d+=(s?'L':'M')+(p.x+Math.cos(a)*r*1.25).toFixed(1)+' '+(p.y+Math.sin(a)*r*.85).toFixed(1);
+        }
+        const path=document.createElementNS(NS,'path');
+        path.setAttribute('d',d+'Z');
+        if(i%5===0) path.setAttribute('class','master');
+        svg.appendChild(path);
+        if(animate&&!reduce){
+          const L=path.getTotalLength();
+          path.style.strokeDasharray=L;path.style.strokeDashoffset=L;
+          path.animate([{strokeDashoffset:L},{strokeDashoffset:0}],{duration:2200,delay:n*70,easing:'cubic-bezier(.3,.6,.2,1)',fill:'forwards'});
+        }
+        if(label&&i%5===0&&pi===0){
+          const t=document.createElementNS(NS,'text');t.setAttribute('class','quota');
+          t.setAttribute('x',(p.x+base*1.22).toFixed(0));t.setAttribute('y',(p.y+4).toFixed(0));
+          t.textContent=(100+(p.levels-i)*25)+' m';svg.appendChild(t);
+        }
+        n++;
+      }
+    });
+  }
+  const topo=document.getElementById('topo');
+  function hero(){
+    const W=topo.clientWidth,H=topo.clientHeight,m=Math.min(W,H);
+    if(!W||!H) return false;
+    ultimo=W+'x'+H;
+    topo.setAttribute('viewBox',`0 0 ${W} ${H}`);topo.innerHTML='';
+    rings(topo,W,H,[{x:W*.76,y:H*.38,r:m*.5,levels:16,ph:0},{x:W*.28,y:H*.1,r:m*.3,levels:9,ph:2}],true,true);
+  }
+  let ultimo='';
+  window.disegnaHero=()=>requestAnimationFrame(hero);
+  /* ridisegna quando la carta diventa visibile o cambia dimensione (anche dentro anteprime e frame) */
+  let t;new ResizeObserver(()=>{clearTimeout(t);t=setTimeout(()=>{if(topo.clientWidth&&topo.clientWidth+'x'+topo.clientHeight!==ultimo)hero()},120)}).observe(topo);
+  /* segnaposto delle tavole del portfolio: da sostituire con <img src="carte/nome.jpg" alt="..."> */
+  document.querySelectorAll('.tavola .img:not(.foto-carta)').forEach(el=>{
+    const s=+el.dataset.seed,svg=document.createElementNS(NS,'svg');
+    svg.setAttribute('viewBox','0 0 400 300');svg.setAttribute('aria-hidden','true');
+    rings(svg,400,300,[{x:120+(s*67)%180,y:90+(s*41)%120,r:150,levels:8,ph:s}],false,false);
+    el.prepend(svg);
+  });
+})();
+
+/* modulo: conferma dopo l'invio e avviso nell'anteprima, dove l'invio non è possibile */
+(function(){
+  const g=document.getElementById('grazie'),f=document.getElementById('modulo');
+  /* pagine: ogni sezione si mostra in base all'indirizzo (#servizi, #portfolio, ...) */
+  const pagine=[...document.querySelectorAll('.pagina')];
+  const alias={grazie:'contatti',pubblicazioni:'profilo','':'inizio'};
+  const btn=document.querySelector('.menu-btn'),nav=document.getElementById('menu');
+  function mostra(){
+    const h=location.hash.slice(1);
+    let p=alias[h]!==undefined?alias[h]:h;
+    if(!pagine.some(el=>el.dataset.pagina===p)) p='inizio';
+    pagine.forEach(el=>el.hidden=el.dataset.pagina!==p);
+    document.querySelectorAll('nav a').forEach(a=>{a.toggleAttribute('aria-current',a.getAttribute('href')==='#'+p);if(a.hasAttribute('aria-current'))a.setAttribute('aria-current','page')});
+    if(p==='inizio') disegnaHero();
+    if(h==='grazie'){g.hidden=false;f.hidden=true;}
+    nav.classList.remove('aperto');btn.setAttribute('aria-expanded','false');
+    if(h==='pubblicazioni'){document.getElementById('pubblicazioni').scrollIntoView();}else{scrollTo(0,0);}
+    const titoli={inizio:'Arianna Testa — geografa',servizi:'Servizi',portfolio:'Portfolio cartografico',campo:'Sul campo',esplorageo:'EsploraGeo',profilo:'Profilo e pubblicazioni',contatti:'Contatti'};
+    document.title=p==='inizio'?titoli.inizio:titoli[p]+' · Arianna Testa';
+  }
+  btn.addEventListener('click',()=>{const o=nav.classList.toggle('aperto');btn.setAttribute('aria-expanded',o);});
+  mostra();addEventListener('hashchange',mostra);
+  const anteprima=!/github\.io$/.test(location.hostname) && location.protocol!=='file:';
+  f.addEventListener('submit',e=>{
+    if(anteprima){e.preventDefault();f.querySelector('.esito').textContent="Questa è un'anteprima: il modulo invierà le richieste quando il sito sarà online su GitHub Pages.";}
+  });
+})();
+</script>
+</body>
+</html>
