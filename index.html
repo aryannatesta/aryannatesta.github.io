@@ -111,6 +111,27 @@
   .galleria figcaption strong{font-family:var(--display);font-size:1.02rem;color:var(--blu)}
   @media (max-width:900px){.enti{grid-template-columns:1fr 1fr}.enti li,.enti li+li{padding:1rem 0;border-left:0;border-bottom:1px solid var(--linea)}.enti li:nth-child(even){padding-left:1rem;border-left:1px solid var(--linea)}.galleria{grid-template-columns:1fr 1fr}}
   @media (max-width:600px){.enti{grid-template-columns:1fr}.enti li:nth-child(even){padding-left:0;border-left:0}}
+  .banner-corso{background:var(--blu);color:var(--carta);padding:3rem 0;border-top:6px solid var(--ocra)}
+  .banner-corso[hidden]{display:none}
+  .banner-corso .wrap{display:grid;grid-template-columns:1fr auto;gap:2.5rem;align-items:center}
+  .banner-etichetta{font-family:var(--display);font-weight:600;font-size:.95rem;color:var(--ocra);margin:0 0 .5rem}
+  .banner-corso h2{font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:.8rem}
+  .banner-corso p{color:#d6dbe3;margin:0;max-width:38em}
+  .banner-corso p.banner-etichetta{color:var(--ocra)}
+  .banner-cta{background:var(--ocra);color:var(--blu);white-space:nowrap}
+  .banner-cta:hover{background:#e0bd5a}
+  @media (max-width:800px){.banner-corso .wrap{grid-template-columns:1fr;gap:1.5rem}.banner-cta{white-space:normal;justify-self:start}}
+  .ente-link{font-size:.88rem;font-weight:600;color:var(--ruggine);margin-top:.2rem}
+  ul.enti{grid-template-columns:repeat(3,1fr)}
+  ul.enti li{padding:1.2rem 1.2rem 1.2rem 1.2rem;border-left:1px solid var(--linea)}
+  ul.enti li:nth-child(3n+1){padding-left:0;border-left:0}
+  ul.enti li:nth-child(n+4){border-top:1px solid var(--linea)}
+  @media (max-width:900px){ul.enti{grid-template-columns:1fr 1fr}ul.enti li,ul.enti li:nth-child(3n+1){padding:1rem 0;border-left:0;border-top:1px solid var(--linea)}ul.enti li:nth-child(even){padding-left:1rem;border-left:1px solid var(--linea)}ul.enti li:nth-child(-n+2){border-top:0}}
+  @media (max-width:600px){ul.enti{grid-template-columns:1fr}ul.enti li:nth-child(even){padding-left:0;border-left:0}ul.enti li:nth-child(2){border-top:1px solid var(--linea)}}
+  .att-link{font-family:var(--display);font-weight:600;font-size:1rem;margin-top:-.3rem}
+  .att-link a{color:#4D6342}
+  .enti b{font-weight:inherit}
+  .galleria figcaption span{display:block}
   /* EsploraGeo in evidenza nella home */
   .promo-eg{background:#5E7650;color:var(--carta);padding:4.5rem 0;position:relative;overflow:hidden}
   .promo-eg .wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:3rem;align-items:center;position:relative}
@@ -246,12 +267,12 @@
   <div class="hero">
     <svg id="topo" aria-hidden="true"></svg>
     <div class="wrap">
-      <p class="nome">Geografa · PhD in Scienze del Patrimonio Culturale</p><br>
-      <h1>Carte, geositi e percorsi per leggere un territorio</h1><br>
-      <p class="lead">Aiuto enti, parchi, comuni e gruppi di ricerca a conoscere e valorizzare il proprio paesaggio: con la cartografia, la valutazione del patrimonio geologico, l'analisi territoriale e il lavoro sul campo.</p>
+      <p class="nome" data-t="home.qualifica"></p><br>
+      <h1 data-t="home.titolo"></h1><br>
+      <p class="lead" data-t="home.testo"></p>
       <div class="azioni">
-        <a class="cta" href="#contatti">Parliamo del tuo progetto</a>
-        <a class="cta sec" href="#portfolio">Guarda le carte</a>
+        <a class="cta" href="#contatti" data-t="home.pulsante_contatti"></a>
+        <a class="cta sec" href="#portfolio" data-t="home.pulsante_carte"></a>
       </div>
     </div>
   </div>
@@ -260,26 +281,31 @@
     <div class="wrap">
       <p class="promo-logo" aria-hidden="true">Esplora<span>Geo</span></p>
       <div class="promo-testo">
-        <h2 id="promo-t">Porta la geografia fuori dall'aula</h2>
-        <p>Laboratori, uscite sul campo e mappe costruite insieme per scuole, PCTO, università popolari e associazioni. Percorsi da 8 a 24 ore, costruiti con i docenti attorno al territorio della classe.</p>
+        <h2 id="promo-t" data-t="home.esplorageo_titolo"></h2>
+        <p data-t="home.esplorageo_testo"></p>
         <div class="azioni">
           <a class="cta promo-cta" href="#esplorageo">Scopri i percorsi EsploraGeo</a>
-          <a class="cta sec promo-sec" href="https://www.instagram.com/esplorageo/">Seguilo su Instagram</a>
+          <a class="cta sec promo-sec" data-href="contatti.instagram">Seguilo su Instagram</a>
         </div>
       </div>
     </div>
   </section>
 
+  <section class="banner-corso" id="banner-corso" aria-labelledby="banner-t">
+    <div class="wrap">
+      <div>
+        <p class="banner-etichetta" data-t="home.banner_etichetta"></p>
+        <h2 id="banner-t" data-t="home.banner_titolo"></h2>
+        <p data-t="home.banner_testo"></p>
+      </div>
+      <a class="cta banner-cta" data-href="home.banner_link" target="_blank" rel="noopener" data-t="home.banner_pulsante"></a>
+    </div>
+  </section>
+
   <section class="collab" aria-labelledby="collab-t">
     <div class="wrap">
-      <h2 id="collab-t">Ho fatto ricerca con</h2>
-      <ul class="enti">
-        <li>Università di Roma Tor Vergata<span>Dottorato e didattica</span></li>
-        <li>Université Toulouse – Jean Jaurès<span>Laboratorio GEODE</span></li>
-        <li>ENSA Toulouse<span>Laboratoire de Recherche en Architecture</span></li>
-        <li>Universidad de Castilla-La Mancha<span>Gruppo GEOVOL, Ciudad Real</span></li>
-        <li>Universidad de La Laguna<span>GeoTurVol, Tenerife</span></li>
-      </ul>
+      <h2 id="collab-t" data-t="home.collaborazioni_titolo"></h2>
+      <ul class="enti" data-lista="home.collaborazioni"><template><li><b data-f="nome"></b><span data-f="dettaglio"></span><a class="ente-link" data-fse="link" data-fhref="link" target="_blank" rel="noopener">Visita il sito</a></li></template></ul>
     </div>
   </section>
 
@@ -300,95 +326,39 @@
     <div class="wrap">
       <div class="head">
         <h2>Servizi</h2>
-        <p>Lavoro su incarico, in collaborazione o come parte di un gruppo di progetto. Per incarichi di ricerca e consulenza lavoro in italiano e in inglese, e posso seguire progetti in francese e spagnolo.</p>
+        <p data-t="servizi.introduzione"></p>
       </div>
-      <div class="servizi">
-        <article>
-          <h3>Cartografia e GIS</h3>
-          <p>Carte tematiche e analitiche in QGIS, modelli del terreno da DEM con ombreggiature e resa 3D, post-produzione in Illustrator, StoryMaps e mappe web per pubblicazioni, pannelli e progetti.</p>
-          <p class="per">Per enti, editori, gruppi di ricerca</p>
-        </article>
-        <article>
-          <h3>Geositi e geoturismo</h3>
-          <p>Inventario e valutazione dei geositi, itinerari geoturistici, supporto ai percorsi di candidatura a UNESCO Global Geopark.</p>
-          <p class="per">Per parchi, aree protette, comuni</p>
-        </article>
-        <article>
-          <h3>Analisi territoriali</h3>
-          <p>Lettura dei sistemi territoriali, analisi degli attori e delle reti (SNA), SWOT e valutazioni comparative a supporto di piani e bandi.</p>
-          <p class="per">Per enti locali, GAL, consulenti</p>
-        </article>
-        <article>
-          <h3>Ricerca e progettazione</h3>
-          <p>Collaborazione a progetti di ricerca e a candidature su bandi nazionali ed europei, rassegne della letteratura, disegno della valutazione.</p>
-          <p class="per">Per università, centri di ricerca, partenariati</p>
-        </article>
-        <article>
-          <h3>Mappatura partecipativa</h3>
-          <p>Mappature collettive e citizen science, anche digitali con FirstLife, per coinvolgere abitanti e portatori di interesse.</p>
-          <p class="per">Per enti locali, ecomusei, reti territoriali</p>
-        </article>
-        <article>
-          <h3>Formazione e divulgazione</h3>
-          <p>Lezioni, corsi e attività per scuole e pubblico, in italiano, con il mio progetto <a href="#esplorageo">EsploraGeo</a>.</p>
-          <p class="per">Per scuole, università popolari, associazioni</p>
-        </article>
-      </div>
+      <div class="servizi" data-lista="servizi.elenco"><template><article>
+          <h3 data-f="titolo"></h3>
+          <p data-f="testo"></p>
+          <p class="per" data-f="per_chi"></p>
+        </article></template></div>
     </div>
   </section>
 
-  <div class="pagina" data-pagina="portfolio">
-  <section id="portfolio" class="portfolio">
+  <section id="portfolio" class="portfolio pagina" data-pagina="portfolio">
     <div class="wrap">
       <div class="head">
         <h2>Portfolio cartografico</h2>
-        <p>Una selezione di carte realizzate per la ricerca sul patrimonio geologico, tra Italia e Spagna. Clicca su una carta per vederla a grande formato.</p>
+        <p data-t="portfolio.introduzione"></p>
       </div>
-      <div class="tavole">
-        <figure class="tavola"><a class="img foto-carta" href="carte/gargano-geositi-geoitinerari.jpg"><img src="carte/gargano-geositi-geoitinerari-anteprima.jpg" alt="Carta del Promontorio del Gargano su rilievo ombreggiato con i geositi classificati per potenziale di inserimento in geoitinerari" loading="lazy"></a>
-          <figcaption><h3>Geositi del Gargano e geoitinerari</h3><p>Classificazione dei geositi secondo il loro potenziale per i geoitinerari · QGIS · tesi di dottorato</p></figcaption></figure>
-        <figure class="tavola"><a class="img foto-carta" href="carte/calatrava-geositi.jpg"><img src="carte/calatrava-geositi-anteprima.jpg" alt="Carta dei geositi del geoparco Volcanes de Calatrava su carta geomorfologica a colori" loading="lazy"></a>
-          <figcaption><h3>Geositi di Volcanes de Calatrava</h3><p>Geositi analizzati sul campo su base geomorfologica · UNESCO Global Geopark, Spagna</p></figcaption></figure>
-        <figure class="tavola"><a class="img foto-carta" href="carte/gargano-carta-fisica.jpg"><img src="carte/gargano-carta-fisica-anteprima.jpg" alt="Carta fisica del Promontorio del Gargano con ombreggiatura del rilievo, laghi di Lesina e Varano" loading="lazy"></a>
-          <figcaption><h3>Carta fisica del Gargano</h3><p>Rilievo ombreggiato e curve di livello dal DEM · QGIS</p></figcaption></figure>
-        <figure class="tavola"><a class="img foto-carta" href="carte/gargano-proposta-geoitinerario.jpg"><img src="carte/gargano-proposta-geoitinerario-anteprima.jpg" alt="Carta della proposta di geoitinerario sul Gargano con geositi e itinerari culturali" loading="lazy"></a>
-          <figcaption><h3>Proposta di geoitinerario per il Gargano</h3><p>Geositi, tratturi e itinerari culturali in una rete per il geoturismo</p></figcaption></figure>
-        <figure class="tavola"><a class="img foto-carta" href="carte/carta-geologica-colli-albani.jpg"><img src="carte/carta-geologica-colli-albani-anteprima.jpg" alt="Carta geologica dei Colli Albani con i laghi di Albano e Nemi, litologie a colori su rilievo ombreggiato" loading="lazy"></a>
-          <figcaption><h3>Carta geologica dei Colli Albani</h3><p>Litologie su rilievo ombreggiato · QGIS</p></figcaption></figure>
-        <figure class="tavola"><a class="img foto-carta" href="carte/calatrava-vias-pecuarias.jpg"><img src="carte/calatrava-vias-pecuarias-anteprima.jpg" alt="Carta delle vie della transumanza nel geoparco Volcanes de Calatrava su modello digitale del terreno" loading="lazy"></a>
-          <figcaption><h3>Vías Pecuarias di Calatrava</h3><p>Rete storica della transumanza su modello del terreno · Ciudad Real, Spagna</p></figcaption></figure>
-        <figure class="tavola"><a class="img foto-carta" href="carte/regi-tratturi.jpg"><img src="carte/regi-tratturi-anteprima.jpg" alt="Carta dei Regi Tratturi tra Abruzzo, Molise e Puglia" loading="lazy"></a>
-          <figcaption><h3>Regi Tratturi Magni</h3><p>I tratturi della transumanza dall'Abruzzo alla Puglia</p></figcaption></figure>
-        <figure class="tavola"><a class="img foto-carta" href="carte/lanzarote-hillshade.jpg"><img src="carte/lanzarote-hillshade-anteprima.jpg" alt="Carta in rilievo ombreggiato dell'isola di Lanzarote con i coni vulcanici" loading="lazy"></a>
-          <figcaption><h3>Lanzarote</h3><p>Modello del terreno ombreggiato con i coni vulcanici · Canarie</p></figcaption></figure>
-        <figure class="tavola"><a class="img foto-carta" href="carte/gargano-cave-apricena.jpg"><img src="carte/gargano-cave-apricena-anteprima.jpg" alt="Carta di inquadramento del geosito delle Cave di Apricena sul Gargano" loading="lazy"></a>
-          <figcaption><h3>Scheda di sito: Cave di Apricena</h3><p>Carta di inquadramento di un geosito con riquadro di localizzazione</p></figcaption></figure>
-      </div>
+      <div class="tavole" data-lista="portfolio.carte"><template><figure class="tavola">
+          <a class="img foto-carta" data-fhref="immagine"><img data-fsrc="immagine" data-falt="titolo" loading="lazy"></a>
+          <figcaption><h3 data-f="titolo"></h3><p data-f="descrizione"></p></figcaption>
+        </figure></template></div>
     </div>
   </section>
-
-  </div>
 
   <section id="campo" class="campo pagina" data-pagina="campo" aria-labelledby="campo-t">
     <div class="wrap">
       <div class="head">
         <h2 id="campo-t">Sul campo</h2>
-        <p>Sopralluoghi, corsi ed escursioni di ricerca tra il Gargano, Castilla-La Mancha e le Isole Canarie.</p>
+        <p data-t="sul-campo.introduzione"></p>
       </div>
-      <div class="galleria">
-        <figure><a href="foto/taccuino-teide.jpg"><img src="foto/taccuino-teide-anteprima.jpg" alt="Arianna prende appunti sul taccuino davanti al Teide" loading="lazy"></a><figcaption><strong>Appunti sul campo</strong>Parque Nacional del Teide, Tenerife</figcaption></figure>
-        <figure><a href="foto/rilievo-fotografico-tenerife.jpg"><img src="foto/rilievo-fotografico-tenerife-anteprima.jpg" alt="Rilievo fotografico, Corso di geomorfologia vulcanica UCLM · Tenerife, 2025" loading="lazy"></a><figcaption><strong>Rilievo fotografico</strong>Corso di geomorfologia vulcanica UCLM · Tenerife, 2025</figcaption></figure>
-        <figure><a href="foto/escursione-uclm-tenerife.jpg"><img src="foto/escursione-uclm-tenerife-anteprima.jpg" alt="Escursione con il gruppo di ricerca, Corso di geomorfologia vulcanica UCLM · Tenerife, 2025" loading="lazy"></a><figcaption><strong>Escursione con il gruppo di ricerca</strong>Corso di geomorfologia vulcanica UCLM · Tenerife, 2025</figcaption></figure>
-        <figure><a href="foto/colate-costa-canarie.jpg"><img src="foto/colate-costa-canarie-anteprima.jpg" alt="Colate laviche sulla costa, Isole Canarie" loading="lazy"></a><figcaption><strong>Colate laviche sulla costa</strong>Isole Canarie</figcaption></figure>
-        <figure><a href="foto/parete-lavica-canarie.jpg"><img src="foto/parete-lavica-canarie-anteprima.jpg" alt="Lettura di un affioramento, Isole Canarie" loading="lazy"></a><figcaption><strong>Lettura di un affioramento</strong>Isole Canarie</figcaption></figure>
-        <figure><a href="foto/architello-san-felice.jpg"><img src="foto/architello-san-felice-anteprima.jpg" alt="Architello di San Felice, Vieste, Gargano · 2024" loading="lazy"></a><figcaption><strong>Architello di San Felice</strong>Vieste, Gargano · 2024</figcaption></figure>
-        <figure><a href="foto/falesia-vulcanica-canarie.jpg"><img src="foto/falesia-vulcanica-canarie-anteprima.jpg" alt="Falesia vulcanica, Isole Canarie" loading="lazy"></a><figcaption><strong>Falesia vulcanica</strong>Isole Canarie</figcaption></figure>
-        <figure><a href="foto/lava-pahoehoe.jpg"><img src="foto/lava-pahoehoe-anteprima.jpg" alt="Lava pahoehoe, Isole Canarie" loading="lazy"></a><figcaption><strong>Lava pahoehoe</strong>Isole Canarie</figcaption></figure>
-        <figure><a href="foto/cava-apricena.jpg"><img src="foto/cava-apricena-anteprima.jpg" alt="Cave di Apricena, Gargano · 2024" loading="lazy"></a><figcaption><strong>Cave di Apricena</strong>Gargano · 2024</figcaption></figure>
-        <figure><a href="foto/lapilli.jpg"><img src="foto/lapilli-anteprima.jpg" alt="Lapilli raccolti sul campo, Isole Canarie" loading="lazy"></a><figcaption><strong>Lapilli raccolti sul campo</strong>Isole Canarie</figcaption></figure>
-        <figure><a href="foto/maar-de-la-posadilla.jpg"><img src="foto/maar-de-la-posadilla-anteprima.jpg" alt="Maar de la Posadilla, Volcanes de Calatrava, Spagna · 2024" loading="lazy"></a><figcaption><strong>Maar de la Posadilla</strong>Volcanes de Calatrava, Spagna · 2024</figcaption></figure>
-        <figure><a href="foto/realta-virtuale-lanzarote.jpg"><img src="foto/realta-virtuale-lanzarote-anteprima.jpg" alt="Divulgazione immersiva, Il tubo vulcanico in realtà virtuale · Lanzarote" loading="lazy"></a><figcaption><strong>Divulgazione immersiva</strong>Il tubo vulcanico in realtà virtuale · Lanzarote</figcaption></figure>
-      </div>
+      <div class="galleria" data-lista="sul-campo.foto"><template><figure>
+          <a data-fhref="immagine"><img data-fsrc="immagine" data-falt="titolo" loading="lazy"></a>
+          <figcaption><strong data-f="titolo"></strong><span data-f="luogo"></span></figcaption>
+        </figure></template></div>
     </div>
   </section>
 
@@ -397,86 +367,45 @@
       <div class="eg-intro">
         <p class="eg-logo">Esplora<span>Geo</span></p>
         <div>
-          <h2>Il mio progetto di divulgazione</h2>
-          <p>Con EsploraGeo porto la geografia fuori dall'aula: laboratori, uscite sul campo e mappe costruite insieme, per scuole, adulti e comunità. Tutte le attività si svolgono in italiano.</p>
-          <p><a href="https://www.instagram.com/esplorageo/">Segui EsploraGeo su Instagram</a></p>
+          <h2 data-t="esplorageo.titolo"></h2>
+          <p data-t="esplorageo.introduzione"></p>
+          <p><a data-href="contatti.instagram">Segui EsploraGeo su Instagram</a></p>
         </div>
       </div>
 
       <h3 class="eg-sub">Percorsi per le scuole</h3>
       <table class="formati">
         <thead><tr><th scope="col">Durata</th><th scope="col">Per chi</th><th scope="col">Cosa include</th></tr></thead>
-        <tbody>
-          <tr><td>8 ore</td><td>Primaria (IV e V), secondaria di primo grado</td><td>Laboratorio di lettura del paesaggio e una breve uscita</td></tr>
-          <tr><td>18 ore</td><td>Secondaria di primo grado</td><td>Percorso completo con uscita sul campo e restituzione finale</td></tr>
-          <tr><td>24 ore</td><td>Primaria e secondaria di primo grado</td><td>Percorso esteso con più uscite e un prodotto finale della classe</td></tr>
-          <tr><td>20+ ore</td><td>Secondaria di secondo grado, classi III–V (PCTO)</td><td>Paesaggio, mappatura digitale, lavoro sul campo, restituzione pubblica</td></tr>
-        </tbody>
+        <tbody data-lista="esplorageo.percorsi"><template><tr><td data-f="durata"></td><td data-f="per_chi"></td><td data-f="include"></td></tr></template></tbody>
       </table>
-      <p class="tappe-riga">Ogni percorso passa per quattro momenti: <strong>guardare</strong> il paesaggio in classe, <strong>uscire</strong> sul posto, <strong>rielaborare</strong> in mappe e racconti, <strong>restituire</strong> il lavoro a famiglie e quartiere. Costi e calendario su richiesta.</p>
+      <p class="tappe-riga" data-t="esplorageo.nota_percorsi"></p>
 
       <h3 class="eg-sub">Corsi ed eventi</h3>
-      <p class="tappe-riga" style="margin-top:0">Corsi di geografia per adulti nelle università popolari, con cartografie, laboratori ed escursioni; serate ed eventi aperti al pubblico sul patrimonio geologico, come la GeoNight e il Geodiversity Day.</p>
+      <p class="tappe-riga" style="margin-top:0" data-t="esplorageo.corsi_ed_eventi"></p>
 
       <h3 class="eg-sub">Con chi ho lavorato</h3>
-      <p class="partner">Liceo Amaldi di Roma · IC Tivoli IV «Vincenzo Pacifici» · Un Mondo nel Cuore APS · Università popolare LUIG, Villa Adriana</p>
+      <p class="partner" data-t="esplorageo.partner"></p>
 
       <h3 class="eg-sub">Attività recenti</h3>
-      <div class="progetti">
-        <article>
-          <p class="luogo">Gabii, Roma</p>
-          <!-- foto attività: <img class="att-foto" src="foto/geonight-2026.jpg" alt="..."> -->
-          <h3>GeoNight 2026 al Cratere di Castiglione</h3>
-          <p>Co-organizzazione e coordinamento scientifico: patrimonio geologico, mappatura partecipativa, paesaggio sonoro e biodiversità attorno all'antico cratere.</p>
-        </article>
-        <article>
-          <p class="luogo">Tivoli</p>
-          <h3>Geo-Epica in Valle dell'Aniene</h3>
-          <p>Con Valeria Roggi, un percorso per le prime medie dell'IC Tivoli IV che intreccia l'epica con la lettura del paesaggio tiburtino.</p>
-        </article>
-        <article>
-          <p class="luogo">Liceo Amaldi, Roma</p>
-          <h3>PCTO di geoeducazione</h3>
-          <p>Laboratori su paesaggio e mappatura partecipativa, uscita sul campo e restituzione curata dagli studenti.</p>
-        </article>
-        <article>
-          <p class="luogo">Villa Adriana, Tivoli</p>
-          <h3>Corso di geografia per adulti</h3>
-          <p>Ventiquattro ore all'università popolare LUIG tra cartografie, lettura dei sistemi territoriali ed escursioni.</p>
-        </article>
-        <article>
-          <p class="luogo">Gabii, Roma</p>
-          <h3>Il paesaggio vulcanico di Gabii</h3>
-          <p>Lezione e attività interattive per la Notte Bianca delle Scuole Aperte 2026, con Un Mondo nel Cuore APS.</p>
-        </article>
-        <article>
-          <p class="luogo">VI Municipio, Roma</p>
-          <h3>GeoNight 2024: come suonano le borgate</h3>
-          <p>Esplorazione urbana con studenti delle medie tra registrazioni sonore, mappe partecipative e lettura del quartiere.</p>
-        </article>
-      </div>
+      <div class="progetti" data-lista="esplorageo.attivita"><template><article>
+          <img class="att-foto" data-fsrc="immagine" data-falt="titolo" data-fse="immagine" loading="lazy">
+          <p class="luogo" data-f="luogo"></p>
+          <h3 data-f="titolo"></h3>
+          <p data-f="testo"></p>
+          <p class="att-link" data-fse="link"><a data-fhref="link" data-f="testo_link" target="_blank" rel="noopener"></a></p>
+        </article></template></div>
     </div>
   </section>
 
   <div class="pagina" data-pagina="profilo">
   <section id="profilo" class="profilo">
     <div class="wrap grid">
-      <img class="ritratto" src="foto/arianna-teide.jpg" alt="Arianna Testa con la macchina fotografica davanti al Teide, Tenerife" width="900" height="1125">
+      <img class="ritratto" data-src="profilo.foto" alt="Arianna Testa sul campo" width="900" height="1125">
       <div>
         <h2>Profilo</h2>
-        <p>Sono geografa e dottoressa di ricerca in Scienze del Patrimonio Culturale. Mi occupo di paesaggio, patrimonio geologico, geoturismo e geoeducazione, con un'attenzione particolare alle aree protette e ai territori fuori dalle grandi città.</p>
-        <p>Nella ricerca di dottorato ho costruito un modello di valorizzazione dei geositi del Parco Nazionale del Gargano in vista della candidatura a UNESCO Global Geopark.</p>
-        <p>Unisco il lavoro sul campo, gli strumenti GIS e i metodi partecipativi: per me una buona carta è quella che aiuta qualcuno a prendere una decisione o a guardare meglio un luogo.</p>
-        <dl class="cv">
-          <dt>Formazione</dt><dd>Dottorato in Scienze del Patrimonio Culturale, Università di Roma Tor Vergata, 2026, giudizio Eccellente. Tesi sul Gargano come Geoparco Mondiale UNESCO. Laurea magistrale in Progettazione e gestione dei sistemi turistici (110 e lode).</dd>
-          <dt>Ricerca all'estero</dt><dd>Université Toulouse – Jean Jaurès (GEODE; LRA, ENSA Toulouse), Universidad de La Laguna (GeoTurVol), Universidad de Castilla-La Mancha (GEOVOL)</dd>
-          <dt>Didattica</dt><dd>Cultrice della materia a Tor Vergata (2022–2026): Geografia, Geografia per la pianificazione del turismo, Geopolitica del turismo, GIS per il marketing territoriale</dd>
-          <dt>Associazioni</dt><dd>AGeI (gruppi Landscape Studies, Geopolitica, Isole e stati insulari, Territori e turismi), Società Geografica Italiana, AIGF – Commissione Geografia e Patrimonio</dd>
-          <dt>Revisioni</dt><dd>Peer reviewer per <em>Geoheritage</em> (Springer Nature) e <em>I Castelli di Yale Online</em></dd>
-          <dt>Strumenti</dt><dd>QGIS avanzato, DEM e resa 3D del terreno, Illustrator, Lightroom, FirstLife, GeoJSON, Overpass Turbo, Excel avanzato, SQL</dd>
-          <dt>Lingue</dt><dd>Italiano, inglese (C1), francese e spagnolo (B1)</dd>
-        </dl>
-        <p class="cv-link"><a href="cv/Arianna_Testa_CV_ITA.pdf">CV in italiano (PDF)</a><a href="cv/Arianna_Testa_CV_ENG.pdf">CV in English (PDF)</a></p>
+        <div data-lista="profilo.paragrafi"><template><p data-f="."></p></template></div>
+        <dl class="cv" data-lista="profilo.curriculum"><template><dt data-f="voce"></dt><dd data-f="testo"></dd></template></dl>
+        <p class="cv-link"><a data-href="profilo.cv_italiano">CV in italiano (PDF)</a><a data-href="profilo.cv_inglese">CV in English (PDF)</a></p>
       </div>
     </div>
   </section>
@@ -485,44 +414,37 @@
     <div class="wrap">
       <div class="head">
         <h2>Pubblicazioni scelte</h2>
-        <p>L'elenco completo è su <a href="https://orcid.org/0009-0006-8784-0599">ORCID</a> e <a href="https://www.researchgate.net/profile/Arianna-Testa-4">ResearchGate</a>.</p>
+        <p>L'elenco completo è su <a data-href="contatti.orcid">ORCID</a> e <a data-href="contatti.researchgate">ResearchGate</a>.</p>
       </div>
-      <ul class="pubblicazioni">
-        <li><span class="anno">2026</span><span>Testa, A., Becerra-Ramírez, R., Cornejo Nieto, C., Dóniz-Páez, J., Morsilli, M. <em>Accessibility, protection, landscape and dissemination for the enhancement of geoheritage: comparative models and operational proposals for the Gargano Promontory.</em> Memorie Geografiche, NS 29.</span></li>
-        <li><span class="anno">2026</span><span>Rastelli, V., Pompili, R., Brustia, E., Primerano, P., Testa, A. <em>Geositi: custodi del patrimonio geologico e strumenti per un turismo sostenibile.</em> Memorie Geografiche, NS 29.</span></li>
-        <li><span class="anno">2025</span><span>Testa, A., Dóniz Páez, J., Cornejo-Nieto, C., Becerra-Ramírez, R. <em>Volcanic geoheritage in small oceanic islands: El Hierro UNESCO Global Geopark as a tool for geotourism promotion.</em> Oxford Geoheritage Virtual Conference.</span></li>
-        <li><span class="anno">2025</span><span>Brambilla, A., Pennacchio, P., Rodelli, R., Testa, A. <em>Dottorandus.</em> In M. Picone (a cura di), Spazi giocati: per una geografia ludica. Guerini e Associati.</span></li>
-        <li><span class="anno">2024</span><span>Testa, A. <em>Gargano Slow &amp; Green. Tra sentieri della transumanza, cammini e ciclovie.</em> In Intrecci di saperi per una conoscenza integrata. Andrea Pacilli Editore.</span></li>
-      </ul>
+      <ul class="pubblicazioni" data-lista="profilo.pubblicazioni"><template><li><span class="anno" data-f="anno"></span><span data-f="testo"></span></li></template></ul>
     </div>
   </section>
-
   </div>
 
   <section id="contatti" class="contatti pagina" data-pagina="contatti">
     <div class="wrap grid">
       <div>
-        <h2>Hai un progetto sul territorio?</h2>
-        <p>Raccontami il progetto, il luogo e i tempi: ti rispondo con una proposta.</p>
+        <h2 data-t="contatti.titolo"></h2>
+        <p data-t="contatti.testo"></p>
         <ul class="canali">
-          <li><a href="mailto:arianna.tes22@gmail.com">arianna.tes22@gmail.com</a><span>Email</span></li>
-          <li><a href="https://www.linkedin.com/in/arianna-testa/">LinkedIn</a><span>Profilo professionale</span></li>
-          <li><a href="https://www.researchgate.net/profile/Arianna-Testa-4">ResearchGate</a><span>Pubblicazioni</span></li>
-          <li><a href="https://orcid.org/0009-0006-8784-0599">ORCID</a><span>0009-0006-8784-0599</span></li>
-          <li><a href="https://www.instagram.com/esplorageo/">@esplorageo</a><span>Instagram di EsploraGeo</span></li>
+          <li><a data-href="contatti.email" data-prefisso="mailto:" data-t="contatti.email"></a><span>Email</span></li>
+          <li><a data-href="contatti.linkedin">LinkedIn</a><span>Profilo professionale</span></li>
+          <li><a data-href="contatti.researchgate">ResearchGate</a><span>Pubblicazioni</span></li>
+          <li><a data-href="contatti.orcid">ORCID</a><span id="orcid-id"></span></li>
+          <li><a data-href="contatti.instagram">@esplorageo</a><span>Instagram di EsploraGeo</span></li>
         </ul>
       </div>
 
       <div>
         <div id="grazie" class="grazie" hidden>
           <h3>Messaggio inviato</h3>
-          <p>Grazie, ho ricevuto la tua richiesta. Ti rispondo entro pochi giorni.</p>
+          <p data-t="contatti.messaggio_inviato"></p>
         </div>
-        <form id="modulo" class="modulo" action="https://formsubmit.co/arianna.tes22@gmail.com" method="POST">
-          <!-- impostazioni FormSubmit -->
+        <form id="modulo" class="modulo" method="POST">
+          <!-- impostazioni FormSubmit: l'indirizzo di destinazione viene dall'email nei contatti -->
           <input type="hidden" name="_subject" value="Nuova richiesta dal sito">
           <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_next" value="https://aryannatesta.github.io/#grazie">
+          <input type="hidden" name="_next" value="">
           <input type="text" name="_honey" class="nascosto" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <div class="due">
@@ -531,16 +453,8 @@
           </div>
           <label><span>Ente, scuola o organizzazione <span class="facolt">(facoltativo)</span></span><input type="text" name="ente" autocomplete="organization"></label>
           <label>Di cosa hai bisogno
-            <select name="servizio" required>
+            <select name="servizio" required id="scelta-servizio">
               <option value="">Scegli un'opzione</option>
-              <option>Cartografia e GIS</option>
-              <option>Geositi e geoturismo</option>
-              <option>Analisi territoriali</option>
-              <option>Ricerca e progettazione</option>
-              <option>Mappatura partecipativa</option>
-              <option>EsploraGeo: percorso per una scuola</option>
-              <option>EsploraGeo: corso o evento</option>
-              <option>Altro</option>
             </select>
           </label>
           <label>Messaggio<textarea name="messaggio" rows="6" required placeholder="Il progetto, il luogo, i tempi e, se c'è, il budget indicativo"></textarea></label>
@@ -557,6 +471,65 @@
   <div class="wrap">Arianna Testa · geografa · Roma</div>
 </footer>
 
+<script id="contenuti-predefiniti" type="application/json">{"home": {"qualifica": "Geografa · PhD in Scienze del Patrimonio Culturale", "titolo": "Carte, geositi e percorsi per leggere un territorio", "testo": "Aiuto enti, parchi, comuni e gruppi di ricerca a conoscere e valorizzare il proprio paesaggio: con la cartografia, la valutazione del patrimonio geologico, l'analisi territoriale e il lavoro sul campo.", "pulsante_contatti": "Parliamo del tuo progetto", "pulsante_carte": "Guarda le carte", "esplorageo_titolo": "Porta la geografia fuori dall'aula", "esplorageo_testo": "Laboratori, uscite sul campo e mappe costruite insieme per scuole, PCTO, università popolari e associazioni. Percorsi da 8 a 24 ore, costruiti con i docenti attorno al territorio della classe.", "banner_mostra": true, "banner_etichetta": "Iscrizioni aperte · corso LUIG", "banner_titolo": "Geografia della Valle dell'Aniene", "banner_testo": "Come rocce, acqua e rilievi hanno modellato la valle, e come le comunità l'hanno trasformata. Otto laboratori il martedì sera a Villa Adriana e quattro escursioni, fino a una carta partecipativa dei paesaggi della valle. Non servono conoscenze di partenza.", "banner_pulsante": "Iscriviti sul sito della LUIG", "banner_link": "https://luig.it/geografia-della-valle-dellaniene/", "collaborazioni_titolo": "Ho collaborato con", "collaborazioni": [{"nome": "Università di Roma Tor Vergata", "dettaglio": "Dottorato e didattica"}, {"nome": "Université Toulouse – Jean Jaurès", "dettaglio": "Laboratorio GEODE"}, {"nome": "ENSA Toulouse", "dettaglio": "Laboratoire de Recherche en Architecture"}, {"nome": "Universidad de Castilla-La Mancha", "dettaglio": "Gruppo GEOVOL, Ciudad Real"}, {"nome": "Universidad de La Laguna", "dettaglio": "GeoTurVol, Tenerife"}, {"nome": "LUIG – Libera Università Igino Giordani", "dettaglio": "Corso Geografia della Valle dell'Aniene", "link": "https://luig.it/geografia-della-valle-dellaniene/"}]}, "servizi": {"introduzione": "Lavoro su incarico, in collaborazione o come parte di un gruppo di progetto. Per incarichi di ricerca e consulenza lavoro in italiano e in inglese, e posso seguire progetti in francese e spagnolo.", "elenco": [{"titolo": "Cartografia e GIS", "testo": "Carte tematiche e analitiche in QGIS, modelli del terreno da DEM con ombreggiature e resa 3D, post-produzione in Illustrator, StoryMaps e mappe web per pubblicazioni, pannelli e progetti.", "per_chi": "Per enti, editori, gruppi di ricerca"}, {"titolo": "Geositi e geoturismo", "testo": "Inventario e valutazione dei geositi, itinerari geoturistici, supporto ai percorsi di candidatura a UNESCO Global Geopark.", "per_chi": "Per parchi, aree protette, comuni"}, {"titolo": "Analisi territoriali", "testo": "Lettura dei sistemi territoriali, analisi degli attori e delle reti (SNA), SWOT e valutazioni comparative a supporto di piani e bandi.", "per_chi": "Per enti locali, GAL, consulenti"}, {"titolo": "Ricerca e progettazione", "testo": "Collaborazione a progetti di ricerca e a candidature su bandi nazionali ed europei, rassegne della letteratura, disegno della valutazione.", "per_chi": "Per università, centri di ricerca, partenariati"}, {"titolo": "Mappatura partecipativa", "testo": "Mappature collettive e citizen science, anche digitali con FirstLife, per coinvolgere abitanti e portatori di interesse.", "per_chi": "Per enti locali, ecomusei, reti territoriali"}, {"titolo": "Formazione e divulgazione", "testo": "Lezioni, corsi e attività per scuole e pubblico, in italiano, con il mio progetto EsploraGeo.", "per_chi": "Per scuole, università popolari, associazioni"}]}, "portfolio": {"introduzione": "Una selezione di carte realizzate per la ricerca sul patrimonio geologico, tra Italia e Spagna. Clicca su una carta per vederla a grande formato.", "carte": [{"immagine": "/carte/gargano-geositi-geoitinerari.jpg", "titolo": "Geositi del Gargano e geoitinerari", "descrizione": "Classificazione dei geositi secondo il loro potenziale per i geoitinerari · QGIS · tesi di dottorato"}, {"immagine": "/carte/calatrava-geositi.jpg", "titolo": "Geositi di Volcanes de Calatrava", "descrizione": "Geositi analizzati sul campo su base geomorfologica · UNESCO Global Geopark, Spagna"}, {"immagine": "/carte/gargano-carta-fisica.jpg", "titolo": "Carta fisica del Gargano", "descrizione": "Rilievo ombreggiato e curve di livello dal DEM · QGIS"}, {"immagine": "/carte/gargano-proposta-geoitinerario.jpg", "titolo": "Proposta di geoitinerario per il Gargano", "descrizione": "Geositi, tratturi e itinerari culturali in una rete per il geoturismo"}, {"immagine": "/carte/carta-geologica-colli-albani.jpg", "titolo": "Carta geologica dei Colli Albani", "descrizione": "Litologie su rilievo ombreggiato · QGIS"}, {"immagine": "/carte/calatrava-vias-pecuarias.jpg", "titolo": "Vías Pecuarias di Calatrava", "descrizione": "Rete storica della transumanza su modello del terreno · Ciudad Real, Spagna"}, {"immagine": "/carte/regi-tratturi.jpg", "titolo": "Regi Tratturi Magni", "descrizione": "I tratturi della transumanza dall'Abruzzo alla Puglia"}, {"immagine": "/carte/lanzarote-hillshade.jpg", "titolo": "Lanzarote", "descrizione": "Modello del terreno ombreggiato con i coni vulcanici · Canarie"}, {"immagine": "/carte/gargano-cave-apricena.jpg", "titolo": "Scheda di sito: Cave di Apricena", "descrizione": "Carta di inquadramento di un geosito con riquadro di localizzazione"}]}, "sul-campo": {"introduzione": "Sopralluoghi, corsi ed escursioni di ricerca tra il Gargano, Castilla-La Mancha e le Isole Canarie.", "foto": [{"immagine": "/foto/taccuino-teide.jpg", "titolo": "Appunti sul campo", "luogo": "Parque Nacional del Teide, Tenerife"}, {"immagine": "/foto/rilievo-fotografico-tenerife.jpg", "titolo": "Rilievo fotografico", "luogo": "Corso di geomorfologia vulcanica UCLM · Tenerife, 2025"}, {"immagine": "/foto/escursione-uclm-tenerife.jpg", "titolo": "Escursione con il gruppo di ricerca", "luogo": "Corso di geomorfologia vulcanica UCLM · Tenerife, 2025"}, {"immagine": "/foto/colate-costa-canarie.jpg", "titolo": "Colate laviche sulla costa", "luogo": "Isole Canarie"}, {"immagine": "/foto/parete-lavica-canarie.jpg", "titolo": "Lettura di un affioramento", "luogo": "Isole Canarie"}, {"immagine": "/foto/architello-san-felice.jpg", "titolo": "Architello di San Felice", "luogo": "Vieste, Gargano · 2024"}, {"immagine": "/foto/falesia-vulcanica-canarie.jpg", "titolo": "Falesia vulcanica", "luogo": "Isole Canarie"}, {"immagine": "/foto/lava-pahoehoe.jpg", "titolo": "Lava pahoehoe", "luogo": "Isole Canarie"}, {"immagine": "/foto/cava-apricena.jpg", "titolo": "Cave di Apricena", "luogo": "Gargano · 2024"}, {"immagine": "/foto/lapilli.jpg", "titolo": "Lapilli raccolti sul campo", "luogo": "Isole Canarie"}, {"immagine": "/foto/maar-de-la-posadilla.jpg", "titolo": "Maar de la Posadilla", "luogo": "Volcanes de Calatrava, Spagna · 2024"}, {"immagine": "/foto/realta-virtuale-lanzarote.jpg", "titolo": "Divulgazione immersiva", "luogo": "Il tubo vulcanico in realtà virtuale · Lanzarote"}]}, "esplorageo": {"titolo": "Il mio progetto di divulgazione", "introduzione": "Con EsploraGeo porto la geografia fuori dall'aula: laboratori, uscite sul campo e mappe costruite insieme, per scuole, adulti e comunità. Tutte le attività si svolgono in italiano.", "percorsi": [{"durata": "8 ore", "per_chi": "Primaria (IV e V), secondaria di primo grado", "include": "Laboratorio di lettura del paesaggio e una breve uscita"}, {"durata": "18 ore", "per_chi": "Secondaria di primo grado", "include": "Percorso completo con uscita sul campo e restituzione finale"}, {"durata": "24 ore", "per_chi": "Primaria e secondaria di primo grado", "include": "Percorso esteso con più uscite e un prodotto finale della classe"}, {"durata": "20+ ore", "per_chi": "Secondaria di secondo grado, classi III–V (PCTO)", "include": "Paesaggio, mappatura digitale, lavoro sul campo, restituzione pubblica"}], "nota_percorsi": "Ogni percorso passa per quattro momenti: **guardare** il paesaggio in classe, **uscire** sul posto, **rielaborare** in mappe e racconti, **restituire** il lavoro a famiglie e quartiere. Costi e calendario su richiesta.", "corsi_ed_eventi": "Corsi di geografia per adulti nelle università popolari, con cartografie, laboratori ed escursioni; serate ed eventi aperti al pubblico sul patrimonio geologico, come la GeoNight e il Geodiversity Day.", "partner": "Liceo Amaldi di Roma · IC Tivoli IV «Vincenzo Pacifici» · Un Mondo nel Cuore APS · LUIG – Libera Università Igino Giordani", "attivita": [{"luogo": "Gabii, Roma", "titolo": "GeoNight 2026 al Cratere di Castiglione", "testo": "Co-organizzazione e coordinamento scientifico: patrimonio geologico, mappatura partecipativa, paesaggio sonoro e biodiversità attorno all'antico cratere.", "immagine": ""}, {"luogo": "Tivoli", "titolo": "Geo-Epica in Valle dell'Aniene", "testo": "Con Valeria Roggi, un percorso per le prime medie dell'IC Tivoli IV che intreccia l'epica con la lettura del paesaggio tiburtino.", "immagine": ""}, {"luogo": "Liceo Amaldi, Roma", "titolo": "PCTO di geoeducazione", "testo": "Laboratori su paesaggio e mappatura partecipativa, uscita sul campo e restituzione curata dagli studenti.", "immagine": ""}, {"luogo": "Villa Adriana, Tivoli", "titolo": "Geografia della Valle dell'Aniene", "testo": "Corso per adulti alla Libera Università Igino Giordani: 24 ore tra laboratori con carte, immagini satellitari e campioni di roccia, ed escursioni nella valle e al Cratere di Castiglione.", "immagine": "", "link": "https://luig.it/geografia-della-valle-dellaniene/", "testo_link": "Scopri il corso sul sito della LUIG"}, {"luogo": "Gabii, Roma", "titolo": "Il paesaggio vulcanico di Gabii", "testo": "Lezione e attività interattive per la Notte Bianca delle Scuole Aperte 2026, con Un Mondo nel Cuore APS.", "immagine": ""}, {"luogo": "VI Municipio, Roma", "titolo": "GeoNight 2024: come suonano le borgate", "testo": "Esplorazione urbana con studenti delle medie tra registrazioni sonore, mappe partecipative e lettura del quartiere.", "immagine": ""}]}, "profilo": {"foto": "/foto/arianna-teide.jpg", "paragrafi": ["Sono geografa e dottoressa di ricerca in Scienze del Patrimonio Culturale. Mi occupo di paesaggio, patrimonio geologico, geoturismo e geoeducazione, con un'attenzione particolare alle aree protette e ai territori fuori dalle grandi città.", "Nella ricerca di dottorato ho costruito un modello di valorizzazione dei geositi del Parco Nazionale del Gargano in vista della candidatura a UNESCO Global Geopark.", "Unisco il lavoro sul campo, gli strumenti GIS e i metodi partecipativi: per me una buona carta è quella che aiuta qualcuno a prendere una decisione o a guardare meglio un luogo."], "curriculum": [{"voce": "Formazione", "testo": "Dottorato in Scienze del Patrimonio Culturale, Università di Roma Tor Vergata, 2026, giudizio Eccellente. Tesi sul Gargano come Geoparco Mondiale UNESCO. Laurea magistrale in Progettazione e gestione dei sistemi turistici (110 e lode)."}, {"voce": "Ricerca all'estero", "testo": "Université Toulouse – Jean Jaurès (GEODE; LRA, ENSA Toulouse), Universidad de La Laguna (GeoTurVol), Universidad de Castilla-La Mancha (GEOVOL)"}, {"voce": "Didattica", "testo": "Cultrice della materia a Tor Vergata (2022–2026): Geografia, Geografia per la pianificazione del turismo, Geopolitica del turismo, GIS per il marketing territoriale"}, {"voce": "Associazioni", "testo": "AGeI (gruppi Landscape Studies, Geopolitica, Isole e stati insulari, Territori e turismi), Società Geografica Italiana, AIGF – Commissione Geografia e Patrimonio"}, {"voce": "Revisioni", "testo": "Peer reviewer per *Geoheritage* (Springer Nature) e *I Castelli di Yale Online*"}, {"voce": "Strumenti", "testo": "QGIS avanzato, DEM e resa 3D del terreno, Illustrator, Lightroom, FirstLife, GeoJSON, Overpass Turbo, Excel avanzato, SQL"}, {"voce": "Lingue", "testo": "Italiano, inglese (C1), francese e spagnolo (B1)"}], "cv_italiano": "/cv/Arianna_Testa_CV_ITA.pdf", "cv_inglese": "/cv/Arianna_Testa_CV_ENG.pdf", "pubblicazioni": [{"anno": "2026", "testo": "Testa, A., Becerra-Ramírez, R., Cornejo Nieto, C., Dóniz-Páez, J., Morsilli, M. *Accessibility, protection, landscape and dissemination for the enhancement of geoheritage: comparative models and operational proposals for the Gargano Promontory.* Memorie Geografiche, NS 29."}, {"anno": "2026", "testo": "Rastelli, V., Pompili, R., Brustia, E., Primerano, P., Testa, A. *Geositi: custodi del patrimonio geologico e strumenti per un turismo sostenibile.* Memorie Geografiche, NS 29."}, {"anno": "2025", "testo": "Testa, A., Dóniz Páez, J., Cornejo-Nieto, C., Becerra-Ramírez, R. *Volcanic geoheritage in small oceanic islands: El Hierro UNESCO Global Geopark as a tool for geotourism promotion.* Oxford Geoheritage Virtual Conference."}, {"anno": "2025", "testo": "Brambilla, A., Pennacchio, P., Rodelli, R., Testa, A. *Dottorandus.* In M. Picone (a cura di), Spazi giocati: per una geografia ludica. Guerini e Associati."}, {"anno": "2024", "testo": "Testa, A. *Gargano Slow & Green. Tra sentieri della transumanza, cammini e ciclovie.* In Intrecci di saperi per una conoscenza integrata. Andrea Pacilli Editore."}]}, "contatti": {"titolo": "Hai un progetto sul territorio?", "testo": "Raccontami il progetto, il luogo e i tempi: ti rispondo con una proposta.", "email": "arianna.tes22@gmail.com", "linkedin": "https://www.linkedin.com/in/arianna-testa/", "researchgate": "https://www.researchgate.net/profile/Arianna-Testa-4", "orcid": "https://orcid.org/0009-0006-8784-0599", "instagram": "https://www.instagram.com/esplorageo/", "messaggio_inviato": "Grazie, ho ricevuto la tua richiesta. Ti rispondo entro pochi giorni."}}</script>
+<script>
+/* Carica i contenuti dai file contenuti/*.json (modificabili da Pages CMS) e li inserisce nella pagina.
+   Se un file non si può leggere (per esempio aprendo index.html dal computer), usa la copia interna. */
+(function(){
+  const FILE=['home','servizi','portfolio','sul-campo','esplorageo','profilo','contatti'];
+  const predefiniti=JSON.parse(document.getElementById('contenuti-predefiniti').textContent);
+
+  function leggi(nome){
+    return fetch('contenuti/'+nome+'.json',{cache:'no-cache'})
+      .then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .catch(()=>predefiniti[nome]);
+  }
+  function valore(D,percorso){
+    const [file,campo]=percorso.split('.');
+    return D[file]?D[file][campo]:undefined;
+  }
+  function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  /* **grassetto**, *corsivo* e a capo */
+  function fmt(s){ return esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/\n/g,'<br>'); }
+  function url(v){ v=String(v||'').trim(); return /^(https?:|mailto:|#)/.test(v)?v:v.replace(/^\/+/,''); }
+
+  function riempi(radice,item){
+    radice.querySelectorAll('[data-fse]').forEach(el=>{ if(!item[el.dataset.fse]) el.remove(); });
+    radice.querySelectorAll('[data-f]').forEach(el=>{ const k=el.dataset.f; let v=k==='.'?item:item[k]; if(k==='testo_link'&&!v) v='Scopri di più'; el.innerHTML=fmt(v); });
+    radice.querySelectorAll('[data-fsrc]').forEach(el=>{ el.src=url(item[el.dataset.fsrc]); });
+    radice.querySelectorAll('[data-fhref]').forEach(el=>{ el.href=url(item[el.dataset.fhref]); });
+    radice.querySelectorAll('[data-falt]').forEach(el=>{ el.alt=item[el.dataset.falt]||''; });
+  }
+
+  function disegna(D){
+    document.querySelectorAll('[data-t]').forEach(el=>{ el.innerHTML=fmt(valore(D,el.dataset.t)); });
+    document.querySelectorAll('[data-href]').forEach(el=>{ el.href=(el.dataset.prefisso||'')+url(valore(D,el.dataset.href)); });
+    document.querySelectorAll('[data-src]').forEach(el=>{ el.src=url(valore(D,el.dataset.src)); });
+    document.querySelectorAll('[data-lista]').forEach(el=>{
+      /* il modello viene tolto dalla pagina, così non conta nella griglia */
+      const tpl=el._tpl||(el._tpl=el.querySelector('template'));
+      [...el.childNodes].forEach(n=>n.remove());
+      (valore(D,el.dataset.lista)||[]).forEach(item=>{
+        if(item==null||item==='') return;
+        const frag=tpl.content.cloneNode(true); riempi(frag,item); el.appendChild(frag);
+      });
+    });
+    const bn=document.getElementById('banner-corso'); if(bn) bn.hidden=!(D.home&&D.home.banner_mostra);
+    const c=D.contatti||{};
+    const orcid=document.getElementById('orcid-id'); if(orcid) orcid.textContent=String(c.orcid||'').replace(/\/+$/,'').split('/').pop();
+    const f=document.getElementById('modulo'); if(f&&c.email) f.action='https://formsubmit.co/'+c.email.trim();
+    const sel=document.getElementById('scelta-servizio');
+    if(sel){
+      const voci=((D.servizi||{}).elenco||[]).map(s=>s.titolo).filter(t=>t&&!/divulgazione/i.test(t))
+        .concat(['EsploraGeo: percorso per una scuola','EsploraGeo: corso o evento','Altro']);
+      sel.length=1; voci.forEach(v=>sel.add(new Option(v,v)));
+    }
+    if(location.hash==='#pubblicazioni') document.getElementById('pubblicazioni').scrollIntoView();
+  }
+
+  Promise.all(FILE.map(leggi)).then(r=>{ const D={}; FILE.forEach((n,i)=>D[n]=r[i]||predefiniti[n]); disegna(D); });
+})();
+</script>
 <script>
 (function(){
   const NS='http://www.w3.org/2000/svg';
@@ -602,18 +575,13 @@
   window.disegnaHero=()=>requestAnimationFrame(hero);
   /* ridisegna quando la carta diventa visibile o cambia dimensione (anche dentro anteprime e frame) */
   let t;new ResizeObserver(()=>{clearTimeout(t);t=setTimeout(()=>{if(topo.clientWidth&&topo.clientWidth+'x'+topo.clientHeight!==ultimo)hero()},120)}).observe(topo);
-  /* segnaposto delle tavole del portfolio: da sostituire con <img src="carte/nome.jpg" alt="..."> */
-  document.querySelectorAll('.tavola .img:not(.foto-carta)').forEach(el=>{
-    const s=+el.dataset.seed,svg=document.createElementNS(NS,'svg');
-    svg.setAttribute('viewBox','0 0 400 300');svg.setAttribute('aria-hidden','true');
-    rings(svg,400,300,[{x:120+(s*67)%180,y:90+(s*41)%120,r:150,levels:8,ph:s}],false,false);
-    el.prepend(svg);
-  });
 })();
 
 /* modulo: conferma dopo l'invio e avviso nell'anteprima, dove l'invio non è possibile */
 (function(){
   const g=document.getElementById('grazie'),f=document.getElementById('modulo');
+  /* dopo l'invio si torna a questo stesso sito, qualunque sia il suo indirizzo */
+  f.querySelector('[name=_next]').value=location.origin+location.pathname+'#grazie';
   /* pagine: ogni sezione si mostra in base all'indirizzo (#servizi, #portfolio, ...) */
   const pagine=[...document.querySelectorAll('.pagina')];
   const alias={grazie:'contatti',pubblicazioni:'profilo','':'inizio'};
