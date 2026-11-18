@@ -1,0 +1,43 @@
+{
+  "qualifica": "Geografa · PhD in Scienze del Patrimonio Culturale",
+  "titolo": "Carte, geositi e percorsi per leggere un territorio",
+  "testo": "Aiuto enti, parchi, comuni e gruppi di ricerca a conoscere e valorizzare il proprio paesaggio: con la cartografia, la valutazione del patrimonio geologico, l'analisi territoriale e il lavoro sul campo.",
+  "pulsante_contatti": "Parliamo del tuo progetto",
+  "pulsante_carte": "Guarda le carte",
+  "esplorageo_titolo": "Porta la geografia fuori dall'aula",
+  "esplorageo_testo": "Laboratori, uscite sul campo e mappe costruite insieme per scuole, PCTO, università popolari e associazioni. Percorsi da 8 a 24 ore, costruiti con i docenti attorno al territorio della classe.",
+  "banner_mostra": true,
+  "banner_etichetta": "Iscrizioni aperte · corso LUIG",
+  "banner_titolo": "Geografia della Valle dell'Aniene",
+  "banner_testo": "Come rocce, acqua e rilievi hanno modellato la valle, e come le comunità l'hanno trasformata. Otto laboratori il martedì sera a Villa Adriana e quattro escursioni, fino a una carta partecipativa dei paesaggi della valle. Non servono conoscenze di partenza.",
+  "banner_pulsante": "Iscriviti sul sito della LUIG",
+  "banner_link": "https://luig.it/geografia-della-valle-dellaniene/",
+  "collaborazioni_titolo": "Ho collaborato con",
+  "collaborazioni": [
+    {
+      "nome": "Università di Roma Tor Vergata",
+      "dettaglio": "Dottorato e didattica"
+    },
+    {
+      "nome": "Université Toulouse – Jean Jaurès",
+      "dettaglio": "Laboratorio GEODE"
+    },
+    {
+      "nome": "ENSA Toulouse",
+      "dettaglio": "Laboratoire de Recherche en Architecture"
+    },
+    {
+      "nome": "Universidad de Castilla-La Mancha",
+      "dettaglio": "Gruppo GEOVOL, Ciudad Real"
+    },
+    {
+      "nome": "Universidad de La Laguna",
+      "dettaglio": "GeoTurVol, Tenerife"
+    },
+    {
+      "nome": "LUIG – Libera Università Igino Giordani",
+      "dettaglio": "Corso Geografia della Valle dell'Aniene",
+      "link": "https://luig.it/geografia-della-valle-dellaniene/"
+    }
+  ]
+}

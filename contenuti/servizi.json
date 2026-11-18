@@ -1,0 +1,35 @@
+{
+  "introduzione": "Lavoro su incarico, in collaborazione o come parte di un gruppo di progetto. Per incarichi di ricerca e consulenza lavoro in italiano e in inglese, e posso seguire progetti in francese e spagnolo.",
+  "elenco": [
+    {
+      "titolo": "Cartografia e GIS",
+      "testo": "Carte tematiche e analitiche in QGIS, modelli del terreno da DEM con ombreggiature e resa 3D, post-produzione in Illustrator, StoryMaps e mappe web per pubblicazioni, pannelli e progetti.",
+      "per_chi": "Per enti, editori, gruppi di ricerca"
+    },
+    {
+      "titolo": "Geositi e geoturismo",
+      "testo": "Inventario e valutazione dei geositi, itinerari geoturistici, supporto ai percorsi di candidatura a UNESCO Global Geopark.",
+      "per_chi": "Per parchi, aree protette, comuni"
+    },
+    {
+      "titolo": "Analisi territoriali",
+      "testo": "Lettura dei sistemi territoriali, analisi degli attori e delle reti (SNA), SWOT e valutazioni comparative a supporto di piani e bandi.",
+      "per_chi": "Per enti locali, GAL, consulenti"
+    },
+    {
+      "titolo": "Ricerca e progettazione",
+      "testo": "Collaborazione a progetti di ricerca e a candidature su bandi nazionali ed europei, rassegne della letteratura, disegno della valutazione.",
+      "per_chi": "Per università, centri di ricerca, partenariati"
+    },
+    {
+      "titolo": "Mappatura partecipativa",
+      "testo": "Mappature collettive e citizen science, anche digitali con FirstLife, per coinvolgere abitanti e portatori di interesse.",
+      "per_chi": "Per enti locali, ecomusei, reti territoriali"
+    },
+    {
+      "titolo": "Formazione e divulgazione",
+      "testo": "Lezioni, corsi e attività per scuole e pubblico, in italiano, con il mio progetto EsploraGeo.",
+      "per_chi": "Per scuole, università popolari, associazioni"
+    }
+  ]
+}

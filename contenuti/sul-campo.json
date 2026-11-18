@@ -1,0 +1,65 @@
+{
+  "introduzione": "Sopralluoghi, corsi ed escursioni di ricerca tra il Gargano, Castilla-La Mancha e le Isole Canarie.",
+  "foto": [
+    {
+      "immagine": "/foto/taccuino-teide.jpg",
+      "titolo": "Appunti sul campo",
+      "luogo": "Parque Nacional del Teide, Tenerife"
+    },
+    {
+      "immagine": "/foto/rilievo-fotografico-tenerife.jpg",
+      "titolo": "Rilievo fotografico",
+      "luogo": "Corso di geomorfologia vulcanica UCLM · Tenerife, 2025"
+    },
+    {
+      "immagine": "/foto/escursione-uclm-tenerife.jpg",
+      "titolo": "Escursione con il gruppo di ricerca",
+      "luogo": "Corso di geomorfologia vulcanica UCLM · Tenerife, 2025"
+    },
+    {
+      "immagine": "/foto/colate-costa-canarie.jpg",
+      "titolo": "Colate laviche sulla costa",
+      "luogo": "Isole Canarie"
+    },
+    {
+      "immagine": "/foto/parete-lavica-canarie.jpg",
+      "titolo": "Lettura di un affioramento",
+      "luogo": "Isole Canarie"
+    },
+    {
+      "immagine": "/foto/architello-san-felice.jpg",
+      "titolo": "Architello di San Felice",
+      "luogo": "Vieste, Gargano · 2024"
+    },
+    {
+      "immagine": "/foto/falesia-vulcanica-canarie.jpg",
+      "titolo": "Falesia vulcanica",
+      "luogo": "Isole Canarie"
+    },
+    {
+      "immagine": "/foto/lava-pahoehoe.jpg",
+      "titolo": "Lava pahoehoe",
+      "luogo": "Isole Canarie"
+    },
+    {
+      "immagine": "/foto/cava-apricena.jpg",
+      "titolo": "Cave di Apricena",
+      "luogo": "Gargano · 2024"
+    },
+    {
+      "immagine": "/foto/lapilli.jpg",
+      "titolo": "Lapilli raccolti sul campo",
+      "luogo": "Isole Canarie"
+    },
+    {
+      "immagine": "/foto/maar-de-la-posadilla.jpg",
+      "titolo": "Maar de la Posadilla",
+      "luogo": "Volcanes de Calatrava, Spagna · 2024"
+    },
+    {
+      "immagine": "/foto/realta-virtuale-lanzarote.jpg",
+      "titolo": "Divulgazione immersiva",
+      "luogo": "Il tubo vulcanico in realtà virtuale · Lanzarote"
+    }
+  ]
+}

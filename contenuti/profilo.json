@@ -1,0 +1,62 @@
+{
+  "foto": "/foto/arianna-teide.jpg",
+  "paragrafi": [
+    "Sono geografa e dottoressa di ricerca in Scienze del Patrimonio Culturale. Mi occupo di paesaggio, patrimonio geologico, geoturismo e geoeducazione, con un'attenzione particolare alle aree protette e ai territori fuori dalle grandi città.",
+    "Nella ricerca di dottorato ho costruito un modello di valorizzazione dei geositi del Parco Nazionale del Gargano in vista della candidatura a UNESCO Global Geopark.",
+    "Unisco il lavoro sul campo, gli strumenti GIS e i metodi partecipativi: per me una buona carta è quella che aiuta qualcuno a prendere una decisione o a guardare meglio un luogo."
+  ],
+  "curriculum": [
+    {
+      "voce": "Formazione",
+      "testo": "Dottorato in Scienze del Patrimonio Culturale, Università di Roma Tor Vergata, 2026, giudizio Eccellente. Tesi sul Gargano come Geoparco Mondiale UNESCO. Laurea magistrale in Progettazione e gestione dei sistemi turistici (110 e lode)."
+    },
+    {
+      "voce": "Ricerca all'estero",
+      "testo": "Université Toulouse – Jean Jaurès (GEODE; LRA, ENSA Toulouse), Universidad de La Laguna (GeoTurVol), Universidad de Castilla-La Mancha (GEOVOL)"
+    },
+    {
+      "voce": "Didattica",
+      "testo": "Cultrice della materia a Tor Vergata (2022–2026): Geografia, Geografia per la pianificazione del turismo, Geopolitica del turismo, GIS per il marketing territoriale"
+    },
+    {
+      "voce": "Associazioni",
+      "testo": "AGeI (gruppi Landscape Studies, Geopolitica, Isole e stati insulari, Territori e turismi), Società Geografica Italiana, AIGF – Commissione Geografia e Patrimonio"
+    },
+    {
+      "voce": "Revisioni",
+      "testo": "Peer reviewer per *Geoheritage* (Springer Nature) e *I Castelli di Yale Online*"
+    },
+    {
+      "voce": "Strumenti",
+      "testo": "QGIS avanzato, DEM e resa 3D del terreno, Illustrator, Lightroom, FirstLife, GeoJSON, Overpass Turbo, Excel avanzato, SQL"
+    },
+    {
+      "voce": "Lingue",
+      "testo": "Italiano, inglese (C1), francese e spagnolo (B1)"
+    }
+  ],
+  "cv_italiano": "/cv/Arianna_Testa_CV_ITA.pdf",
+  "cv_inglese": "/cv/Arianna_Testa_CV_ENG.pdf",
+  "pubblicazioni": [
+    {
+      "anno": "2026",
+      "testo": "Testa, A., Becerra-Ramírez, R., Cornejo Nieto, C., Dóniz-Páez, J., Morsilli, M. *Accessibility, protection, landscape and dissemination for the enhancement of geoheritage: comparative models and operational proposals for the Gargano Promontory.* Memorie Geografiche, NS 29."
+    },
+    {
+      "anno": "2026",
+      "testo": "Rastelli, V., Pompili, R., Brustia, E., Primerano, P., Testa, A. *Geositi: custodi del patrimonio geologico e strumenti per un turismo sostenibile.* Memorie Geografiche, NS 29."
+    },
+    {
+      "anno": "2025",
+      "testo": "Testa, A., Dóniz Páez, J., Cornejo-Nieto, C., Becerra-Ramírez, R. *Volcanic geoheritage in small oceanic islands: El Hierro UNESCO Global Geopark as a tool for geotourism promotion.* Oxford Geoheritage Virtual Conference."
+    },
+    {
+      "anno": "2025",
+      "testo": "Brambilla, A., Pennacchio, P., Rodelli, R., Testa, A. *Dottorandus.* In M. Picone (a cura di), Spazi giocati: per una geografia ludica. Guerini e Associati."
+    },
+    {
+      "anno": "2024",
+      "testo": "Testa, A. *Gargano Slow & Green. Tra sentieri della transumanza, cammini e ciclovie.* In Intrecci di saperi per una conoscenza integrata. Andrea Pacilli Editore."
+    }
+  ]
+}

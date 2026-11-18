@@ -1,0 +1,69 @@
+{
+  "titolo": "Il mio progetto di divulgazione",
+  "introduzione": "Con EsploraGeo porto la geografia fuori dall'aula: laboratori, uscite sul campo e mappe costruite insieme, per scuole, adulti e comunità. Tutte le attività si svolgono in italiano.",
+  "percorsi": [
+    {
+      "durata": "8 ore",
+      "per_chi": "Primaria (IV e V), secondaria di primo grado",
+      "include": "Laboratorio di lettura del paesaggio e una breve uscita"
+    },
+    {
+      "durata": "18 ore",
+      "per_chi": "Secondaria di primo grado",
+      "include": "Percorso completo con uscita sul campo e restituzione finale"
+    },
+    {
+      "durata": "24 ore",
+      "per_chi": "Primaria e secondaria di primo grado",
+      "include": "Percorso esteso con più uscite e un prodotto finale della classe"
+    },
+    {
+      "durata": "20+ ore",
+      "per_chi": "Secondaria di secondo grado, classi III–V (PCTO)",
+      "include": "Paesaggio, mappatura digitale, lavoro sul campo, restituzione pubblica"
+    }
+  ],
+  "nota_percorsi": "Ogni percorso passa per quattro momenti: **guardare** il paesaggio in classe, **uscire** sul posto, **rielaborare** in mappe e racconti, **restituire** il lavoro a famiglie e quartiere. Costi e calendario su richiesta.",
+  "corsi_ed_eventi": "Corsi di geografia per adulti nelle università popolari, con cartografie, laboratori ed escursioni; serate ed eventi aperti al pubblico sul patrimonio geologico, come la GeoNight e il Geodiversity Day.",
+  "partner": "Liceo Amaldi di Roma · IC Tivoli IV «Vincenzo Pacifici» · Un Mondo nel Cuore APS · LUIG – Libera Università Igino Giordani",
+  "attivita": [
+    {
+      "luogo": "Gabii, Roma",
+      "titolo": "GeoNight 2026 al Cratere di Castiglione",
+      "testo": "Co-organizzazione e coordinamento scientifico: patrimonio geologico, mappatura partecipativa, paesaggio sonoro e biodiversità attorno all'antico cratere.",
+      "immagine": ""
+    },
+    {
+      "luogo": "Tivoli",
+      "titolo": "Geo-Epica in Valle dell'Aniene",
+      "testo": "Con Valeria Roggi, un percorso per le prime medie dell'IC Tivoli IV che intreccia l'epica con la lettura del paesaggio tiburtino.",
+      "immagine": ""
+    },
+    {
+      "luogo": "Liceo Amaldi, Roma",
+      "titolo": "PCTO di geoeducazione",
+      "testo": "Laboratori su paesaggio e mappatura partecipativa, uscita sul campo e restituzione curata dagli studenti.",
+      "immagine": ""
+    },
+    {
+      "luogo": "Villa Adriana, Tivoli",
+      "titolo": "Geografia della Valle dell'Aniene",
+      "testo": "Corso per adulti alla Libera Università Igino Giordani: 24 ore tra laboratori con carte, immagini satellitari e campioni di roccia, ed escursioni nella valle e al Cratere di Castiglione.",
+      "immagine": "",
+      "link": "https://luig.it/geografia-della-valle-dellaniene/",
+      "testo_link": "Scopri il corso sul sito della LUIG"
+    },
+    {
+      "luogo": "Gabii, Roma",
+      "titolo": "Il paesaggio vulcanico di Gabii",
+      "testo": "Lezione e attività interattive per la Notte Bianca delle Scuole Aperte 2026, con Un Mondo nel Cuore APS.",
+      "immagine": ""
+    },
+    {
+      "luogo": "VI Municipio, Roma",
+      "titolo": "GeoNight 2024: come suonano le borgate",
+      "testo": "Esplorazione urbana con studenti delle medie tra registrazioni sonore, mappe partecipative e lettura del quartiere.",
+      "immagine": ""
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "introduzione": "Una selezione di carte realizzate per la ricerca sul patrimonio geologico, tra Italia e Spagna. Clicca su una carta per vederla a grande formato.",
+  "carte": [
+    {
+      "immagine": "/carte/gargano-geositi-geoitinerari.jpg",
+      "titolo": "Geositi del Gargano e geoitinerari",
+      "descrizione": "Classificazione dei geositi secondo il loro potenziale per i geoitinerari · QGIS · tesi di dottorato"
+    },
+    {
+      "immagine": "/carte/calatrava-geositi.jpg",
+      "titolo": "Geositi di Volcanes de Calatrava",
+      "descrizione": "Geositi analizzati sul campo su base geomorfologica · UNESCO Global Geopark, Spagna"
+    },
+    {
+      "immagine": "/carte/gargano-carta-fisica.jpg",
+      "titolo": "Carta fisica del Gargano",
+      "descrizione": "Rilievo ombreggiato e curve di livello dal DEM · QGIS"
+    },
+    {
+      "immagine": "/carte/gargano-proposta-geoitinerario.jpg",
+      "titolo": "Proposta di geoitinerario per il Gargano",
+      "descrizione": "Geositi, tratturi e itinerari culturali in una rete per il geoturismo"
+    },
+    {
+      "immagine": "/carte/carta-geologica-colli-albani.jpg",
+      "titolo": "Carta geologica dei Colli Albani",
+      "descrizione": "Litologie su rilievo ombreggiato · QGIS"
+    },
+    {
+      "immagine": "/carte/calatrava-vias-pecuarias.jpg",
+      "titolo": "Vías Pecuarias di Calatrava",
+      "descrizione": "Rete storica della transumanza su modello del terreno · Ciudad Real, Spagna"
+    },
+    {
+      "immagine": "/carte/regi-tratturi.jpg",
+      "titolo": "Regi Tratturi Magni",
+      "descrizione": "I tratturi della transumanza dall'Abruzzo alla Puglia"
+    },
+    {
+      "immagine": "/carte/lanzarote-hillshade.jpg",
+      "titolo": "Lanzarote",
+      "descrizione": "Modello del terreno ombreggiato con i coni vulcanici · Canarie"
+    },
+    {
+      "immagine": "/carte/gargano-cave-apricena.jpg",
+      "titolo": "Scheda di sito: Cave di Apricena",
+      "descrizione": "Carta di inquadramento di un geosito con riquadro di localizzazione"
+    }
+  ]
+}
